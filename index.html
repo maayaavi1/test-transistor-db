@@ -3,28 +3,30 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Transistor Equivalent Finder Tool - BJT & FET Search | TransistorDatabase</title>
-<meta content="Find equivalent transistors by specification. Search NPN, PNP, MOSFETs by VCEO, IC, Package, and more. Instant datasheet matching." name="description"/>
+<title>Transistor Equivalent Finder Tool - BJT & FET Cross Reference | TransistorDatabase</title>
+<meta content="Find equivalent transistors by specification. Search NPN, PNP, N-Channel, P-Channel MOSFETs by VCEO, IC, Package. Free cross-reference tool with 10,000+ datasheets." name="description"/>
 <link href="https://transistordatabase.com/transistor-equivalent-finder-tool.html" rel="canonical"/>
 <meta content="index, follow" name="robots"/>
 
-<!-- OG and Twitter Tags -->
+<!-- Open Graph -->
 <meta content="website" property="og:type"/>
-<meta content="Transistor Equivalent Finder Tool - BJT & FET Search | TransistorDatabase" property="og:title"/>
-<meta content="Find equivalent transistors by specification. Search NPN, PNP, MOSFETs by VCEO, IC, Package, and more. Instant datasheet matching." property="og:description"/>
+<meta content="Transistor Equivalent Finder Tool - BJT & FET Cross Reference | TransistorDatabase" property="og:title"/>
+<meta content="Find equivalent transistors by specification. Search NPN, PNP, N-Channel, P-Channel MOSFETs by VCEO, IC, Package. Free cross-reference tool with 10,000+ datasheets." property="og:description"/>
 <meta content="https://transistordatabase.com/transistor-equivalent-finder-tool.html" property="og:url"/>
 <meta content="TransistorDatabase" property="og:site_name"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<meta content="Transistor Equivalent Finder Tool - BJT & FET Search | TransistorDatabase" name="twitter:title"/>
-<meta content="Find equivalent transistors by specification. Search NPN, PNP, MOSFETs by VCEO, IC, Package, and more. Instant datasheet matching." name="twitter:description"/>
 
-<!-- JSON-LD Schemas -->
+<!-- Twitter -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Transistor Equivalent Finder Tool - BJT & FET Cross Reference | TransistorDatabase" name="twitter:title"/>
+<meta content="Find equivalent transistors by specification. Search NPN, PNP, N-Channel, P-Channel MOSFETs by VCEO, IC, Package. Free cross-reference tool with 10,000+ datasheets." name="twitter:description"/>
+
+<!-- JSON-LD Schema - TechArticle -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Transistor Equivalent Finder Tool - BJT & FET Search",
-  "description": "A comprehensive tool to search and find equivalent transistors for BJT, MOSFET, and JFET replacements. Compare specifications like VCEO, collector current, package types, and more to find compatible alternatives for your electronic projects.",
+  "headline": "Transistor Equivalent Finder Tool - BJT & FET Cross Reference",
+  "description": "Free online tool to find equivalent transistors by specification. Search BJT (NPN, PNP) and MOSFET (N-Channel, P-Channel) transistors by VCEO, IC, package type, and more.",
   "url": "https://transistordatabase.com/transistor-equivalent-finder-tool.html",
   "author": {
     "@type": "Organization",
@@ -33,10 +35,15 @@
   "publisher": {
     "@type": "Organization",
     "name": "TransistorDatabase"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://transistordatabase.com/transistor-equivalent-finder-tool.html"
   }
 }
 </script>
 
+<!-- JSON-LD Schema - FAQ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -44,209 +51,233 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Match Polarity (NPN vs. PNP)",
+      "name": "Do I need to match polarity (NPN vs PNP)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "This is the most fundamental rule. You must replace an NPN transistor with another NPN, and a PNP with a PNP. They control current in opposite ways and are not interchangeable."
+        "text": "Yes, absolutely. NPN and PNP transistors control current in opposite ways and cannot be swapped. Always replace an NPN with an NPN, and a PNP with a PNP."
       }
     },
     {
       "@type": "Question",
-      "name": "Voltage Rating (VCEO) Must Be Equal or Higher",
+      "name": "Can I use a transistor with a higher VCEO rating?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Collector-Emitter Voltage (VCEO) is the maximum voltage the transistor can withstand when it is in the 'off' state. Your replacement part must have a VCEO equal to or greater than the original transistor. Using a part with a lower rating will cause it to break down."
+        "text": "Yes. The VCEO (Collector-Emitter Voltage) is the maximum voltage the transistor can handle when off. Using a part with a higher rating is safe and often recommended. Never use a lower rating, as it will cause breakdown."
       }
     },
     {
       "@type": "Question",
-      "name": "Current Rating (IC) Must Be Equal or Higher",
+      "name": "What if the current rating (Ic) is higher?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Collector Current (IC) is the maximum amount of current the transistor can handle continuously. The replacement must have an IC rating equal to or greater than the original part to avoid overheating and failure."
+        "text": "That's perfectly fine. A higher Ic rating means the replacement can handle more current, which gives you a safety margin. Just ensure it's equal to or greater than your original part to avoid overheating."
       }
     },
     {
       "@type": "Question",
-      "name": "Physical Package and Pinout",
+      "name": "Does the physical package and pinout matter?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The replacement must physically fit on your circuit board. Check if the original is a through-hole (like TO-92) or surface-mount (like SOT-23) component. You must also verify the pinout (the order of the Emitter, Base, and Collector pins) is the same, or you will have to adjust your layout."
+        "text": "Yes, very much. The replacement must physically fit on your circuit board (e.g., TO-92 for through-hole, SOT-23 for surface-mount). You must also verify the pinout (the order of Emitter, Base, and Collector pins) matches, or you'll need to modify your layout."
       }
     }
   ]
 }
 </script>
 
+<!-- JSON-LD Schema - Breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://transistordatabase.com/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Transistor Equivalent Finder",
+      "item": "https://transistordatabase.com/transistor-equivalent-finder-tool.html"
+    }
+  ]
+}
+</script>
+
 <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background: #f5f5f0; color: #2c2417; line-height: 1.6; }
-    .container { max-width: 1000px; margin: 0 auto; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); min-height: 100vh; display: flex; flex-direction: column; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background: #f5f5f0; color: #2c2417; line-height: 1.6; }
+.container { max-width: 1000px; margin: 0 auto; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
 
-    header { background: #faf9f6; padding: 16px 24px; border-bottom: 1px solid #e5e3db; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-family: ui-monospace, SFMono-Regular, monospace; font-weight: 700; font-size: 18px; color: #2c2417; text-decoration: none; }
+header { background: #faf9f6; padding: 16px 24px; border-bottom: 1px solid #e5e3db; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: ui-monospace, SFMono-Regular, monospace; font-weight: 700; font-size: 18px; color: #2c2417; text-decoration: none; }
 
-    /* Hero Section - Tighter for Above Fold */
-    .hero { padding: 20px 24px 16px 24px; background: linear-gradient(135deg, #ffffff 0%, #faf9f6 100%); border-bottom: 1px solid #e5e3db; }
-    h1 { font-size: 26px; font-weight: 600; color: #2c2417; margin-bottom: 8px; line-height: 1.2; }
-    .instruction-text { font-size: 14px; color: #55524b; max-width: 700px; margin-bottom: 16px; }
+/* Breadcrumb */
+.breadcrumb { font-size: 13px; color: #55524b; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 4px; }
+.breadcrumb a { color: #865a2e; text-decoration: underline; white-space: nowrap; }
+.breadcrumb span { white-space: nowrap; }
 
-    /* Selector Boxes - Tighter Spacing */
-    .selector-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; max-width: 600px; }
-    .selector-card { 
-        padding: 14px 16px; border: 2px solid #e5e3db; border-radius: 8px; cursor: pointer; 
-        background: #ffffff; transition: all 0.2s ease; position: relative;
-    }
-    .selector-card h3 { font-size: 16px; margin-bottom: 2px; color: #2c2417; }
-    .selector-card p { font-size: 12px; color: #55524b; }
+/* Hero Section - Compact */
+.hero { padding: 24px 24px 20px 24px; background: linear-gradient(135deg, #ffffff 0%, #faf9f6 100%); border-bottom: 1px solid #e5e3db; }
+h1 { font-size: 26px; font-weight: 600; color: #2c2417; margin-bottom: 8px; line-height: 1.2; }
+.instruction-text { font-size: 14px; color: #55524b; margin-bottom: 20px; line-height: 1.5; }
+
+/* Selector Boxes (BJT vs FET) - Compact */
+.selector-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.selector-card { 
+    padding: 14px 16px; border: 2px solid #e5e3db; border-radius: 6px; cursor: pointer; 
+    background: #ffffff; transition: all 0.2s ease; position: relative;
+}
+.selector-card h3 { font-size: 16px; margin-bottom: 2px; color: #2c2417; font-weight: 600; }
+.selector-card p { font-size: 12px; color: #55524b; line-height: 1.4; }
+
+.selector-card.active { border-color: #865a2e; background: #fffcf9; box-shadow: 0 2px 8px rgba(134, 90, 46, 0.1); }
+.selector-card.active::after {
+    content: "✔"; position: absolute; top: 8px; right: 8px; 
+    background: #865a2e; color: white; width: 20px; height: 20px; 
+    border-radius: 50%; text-align: center; font-size: 12px; line-height: 20px;
+}
+
+.selector-card.inactive { opacity: 0.6; filter: grayscale(1); cursor: not-allowed; }
+
+/* Search Form - Compact */
+.search-panel { background: #faf9f6; padding: 18px; border-radius: 6px; border: 1px solid #e5e3db; }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 16px; }
+
+.input-group { display: flex; flex-direction: column; }
+.input-group label { font-size: 11px; font-weight: 600; color: #55524b; margin-bottom: 5px; text-transform: uppercase; }
+
+.form-control { 
+    padding: 8px 10px; border: 1px solid #d4d2ca; border-radius: 4px; 
+    font-size: 14px; color: #2c2417; background: #ffffff; width: 100%;
+}
+.form-control:focus { outline: none; border-color: #865a2e; box-shadow: 0 0 0 2px rgba(134, 90, 46, 0.1); }
+
+.btn { padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: 600; text-align: center; transition: 0.2s; border: none; cursor: pointer; display: inline-block; }
+.btn-primary { background: #865a2e; color: white; width: 100%; }
+.btn-primary:hover { background: #6d4925; }
+.btn:disabled { background: #ccc; cursor: not-allowed; }
+
+.error-msg { background: #fff4f4; border: 1px solid #ffcccc; color: #cc0000; padding: 12px; border-radius: 4px; margin-top: 12px; font-size: 13px; display: none; }
+
+/* How to Use Box */
+.how-to-use { background: #fffcf9; border-left: 4px solid #865a2e; padding: 14px 16px; margin-top: 16px; border-radius: 4px; }
+.how-to-use h3 { font-size: 13px; font-weight: 600; color: #2c2417; margin-bottom: 8px; text-transform: uppercase; }
+.how-to-use ol { margin-left: 20px; font-size: 13px; color: #55524b; }
+.how-to-use li { margin-bottom: 4px; }
+
+/* Content Section */
+.content-section { padding: 32px 24px; border-bottom: 1px solid #e5e3db; }
+.section-title { font-size: 22px; font-weight: 600; color: #2c2417; margin-bottom: 16px; border-bottom: 2px solid #e5e3db; padding-bottom: 8px; }
+
+/* BJT vs FET Comparison Box */
+.comparison-box { background: #faf9f6; padding: 20px; border: 1px solid #e5e3db; border-radius: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.comparison-item h3 { font-size: 16px; font-weight: 600; color: #2c2417; margin-bottom: 8px; }
+.comparison-item p { font-size: 14px; color: #55524b; line-height: 1.6; }
+
+/* FAQ Section */
+.faq-item { margin-bottom: 20px; }
+.faq-question { font-size: 16px; font-weight: 600; color: #2c2417; margin-bottom: 8px; }
+.faq-answer { font-size: 14px; color: #55524b; line-height: 1.6; padding-left: 16px; }
+
+/* Results Section */
+.results-container { padding: 32px 24px; display: none; }
+.results-header { 
+    background: #faf9f6; color: #2c2417; padding: 12px 16px; border-radius: 6px 6px 0 0; 
+    border: 1px solid #e5e3db; border-bottom: none;
+}
+.results-count { font-weight: 600; font-size: 14px; }
+
+/* Table Styles */
+.table-wrapper { border: 1px solid #e5e3db; border-top: none; border-radius: 0 0 6px 6px; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 700px; }
+thead { background: #2c2417; color: #faf9f6; }
+th { text-align: left; padding: 12px 14px; font-weight: 600; font-size: 12px; text-transform: uppercase; white-space: nowrap; }
+td { padding: 12px 14px; border-bottom: 1px solid #f0eee8; color: #2c2417; white-space: nowrap; }
+tbody tr:hover { background: #fffcf9; }
+td a { color: #865a2e; text-decoration: underline; font-weight: 600; }
+
+/* Tighter columns for values */
+table th:nth-child(4), table td:nth-child(4),
+table th:nth-child(5), table td:nth-child(5),
+table th:nth-child(6), table td:nth-child(6),
+table th:nth-child(7), table td:nth-child(7),
+table th:nth-child(8), table td:nth-child(8) { width: 80px; }
+
+/* Footer */
+footer { padding: 32px 24px; background: #2c2417; color: #d4d2ca; text-align: center; font-size: 13px; }
+footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    h1 { font-size: 22px; }
+    .selector-container { grid-template-columns: 1fr; }
+    .comparison-box { grid-template-columns: 1fr; gap: 16px; }
     
-    .selector-card.active { border-color: #865a2e; background: #fffcf9; box-shadow: 0 2px 8px rgba(134, 90, 46, 0.1); }
-    .selector-card.active::after {
-        content: "✔"; position: absolute; top: 8px; right: 8px; 
-        background: #865a2e; color: white; width: 20px; height: 20px; 
-        border-radius: 50%; text-align: center; font-size: 12px; line-height: 20px;
+    /* Mobile Card View for Table */
+    .table-wrapper { border: none; border-radius: 0; }
+    table { min-width: 0; }
+    .table-wrapper table, .table-wrapper thead, .table-wrapper tbody, .table-wrapper tr { display: block; }
+    .table-wrapper thead { display: none; }
+    
+    .table-wrapper tr {
+        border: 1px solid #e5e3db;
+        border-radius: 6px;
+        padding: 14px;
+        margin-bottom: 12px;
+        background: #ffffff;
+        display: block;
     }
     
-    .selector-card.inactive { opacity: 0.6; filter: grayscale(1); cursor: not-allowed; }
-
-    /* Search Form - Tighter */
-    .search-panel { background: #faf9f6; padding: 16px; border-radius: 8px; border: 1px solid #e5e3db; }
-    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 12px; }
+    .table-wrapper td {
+        display: block;
+        padding: 0;
+        border: none;
+        text-align: left;
+    }
     
-    .input-group { display: flex; flex-direction: column; }
-    .input-group label { font-size: 11px; font-weight: 600; color: #55524b; margin-bottom: 4px; text-transform: uppercase; }
+    /* Part Name - Own Row */
+    td:nth-child(1) {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #f0eee8;
+    }
     
-    .form-control { 
-        padding: 8px 10px; border: 1px solid #d4d2ca; border-radius: 6px; 
-        font-size: 14px; color: #2c2417; background: #ffffff; width: 100%;
+    /* Type and Package - Second Row */
+    td:nth-child(2), td:nth-child(3) {
+        display: inline-block;
+        font-size: 13px;
+        color: #55524b;
+        margin-right: 12px;
+        margin-bottom: 8px;
     }
-    .form-control:focus { outline: none; border-color: #865a2e; box-shadow: 0 0 0 2px rgba(134, 90, 46, 0.1); }
-
-    .btn { padding: 12px 20px; border-radius: 6px; font-size: 14px; font-weight: 600; text-align: center; transition: 0.2s; border: none; cursor: pointer; display: inline-block; }
-    .btn-primary { background: #865a2e; color: white; width: 100%; }
-    .btn-primary:hover { background: #6d4925; }
-    .btn:disabled { background: #ccc; cursor: not-allowed; }
-
-    .error-msg { 
-        background: #fff3cd; color: #856404; padding: 12px 16px; 
-        border-radius: 6px; border-left: 4px solid #ffc107; 
-        margin-top: 12px; display: none; font-size: 14px;
-    }
-
-    /* Results Section */
-    .results-container { padding: 24px; display: none; border-bottom: 1px solid #e5e3db; }
+    td:nth-child(2)::before { content: "Type: "; font-weight: 600; color: #2c2417; }
+    td:nth-child(3)::before { content: "Package: "; font-weight: 600; color: #2c2417; }
     
-    /* Results Header - NOT a table header */
-    .results-header { 
-        background: #faf9f6; padding: 12px 16px; border-radius: 6px; 
-        margin-bottom: 16px; font-size: 14px; color: #55524b; 
-        border: 1px solid #e5e3db; font-weight: 600;
+    /* Specs - Third Row */
+    td:nth-child(4), td:nth-child(5), td:nth-child(6), td:nth-child(7) {
+        display: inline-block;
+        font-size: 13px;
+        margin-right: 12px;
+        margin-bottom: 4px;
     }
-
-    /* Table Styles */
-    .table-wrapper { border: 1px solid #e5e3db; border-radius: 6px; overflow: hidden; }
-    table { width: 100%; border-collapse: collapse; font-size: 14px; }
-    thead { background: #2c2417; color: #faf9f6; }
-    th { text-align: left; padding: 12px 16px; white-space: nowrap; font-weight: 600; }
-    td { padding: 12px 16px; border-bottom: 1px solid #f0eee8; color: #2c2417; }
-    tbody tr:last-child td { border-bottom: none; }
-    td a { color: #865a2e; text-decoration: underline; font-weight: 600; }
-
-    /* Tighter spec columns */
-    td:nth-child(4), td:nth-child(5), td:nth-child(6), td:nth-child(7), td:nth-child(8) { width: 80px; }
-    th:nth-child(4), th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8) { width: 80px; }
-
-    /* Content Sections */
-    .content-section { padding: 32px 24px; border-bottom: 1px solid #e5e3db; }
-    .section-title { font-size: 22px; font-weight: 600; color: #2c2417; margin-bottom: 20px; border-bottom: 2px solid #e5e3db; padding-bottom: 10px; }
-
-    /* When to Choose Box */
-    .info-box { background: #faf9f6; padding: 20px; border-left: 4px solid #865a2e; border-radius: 4px; }
-    .type-guide { margin-bottom: 16px; }
-    .type-guide:last-child { margin-bottom: 0; }
-    .type-title { font-weight: 600; color: #2c2417; margin-bottom: 4px; font-size: 15px; }
-    .type-desc { color: #55524b; font-size: 15px; line-height: 1.5; }
-
-    /* FAQ Section */
-    .faq-item { margin-bottom: 24px; }
-    .faq-item:last-child { margin-bottom: 0; }
-    .faq-question { font-size: 17px; font-weight: 600; color: #2c2417; margin-bottom: 8px; }
-    .faq-answer { color: #55524b; font-size: 15px; line-height: 1.6; }
-
-    /* Footer */
-    footer { padding: 32px 24px; background: #2c2417; color: #d4d2ca; text-align: center; font-size: 13px; margin-top: auto; }
-    footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
-
-    /* Mobile Optimization */
-    @media (max-width: 768px) {
-        .selector-container { grid-template-columns: 1fr; }
-        .form-grid { grid-template-columns: 1fr; }
-        
-        /* Transform Table to Card List */
-        .table-wrapper table, .table-wrapper thead, .table-wrapper tbody, .table-wrapper tr, .table-wrapper td {
-            display: block;
-        }
-        
-        .table-wrapper thead { display: none; }
-        
-        .table-wrapper tr {
-            padding: 14px 16px;
-            border-bottom: 1px solid #e5e3db;
-            background: #ffffff;
-            margin-bottom: 8px;
-        }
-
-        /* Part Name - Full First Row */
-        td:nth-child(1) { 
-            padding: 0 0 8px 0; 
-            border: none; 
-            font-size: 16px;
-            font-weight: 600;
-            display: block;
-            width: 100%;
-        }
-
-        /* Type & Package - Second Row */
-        td:nth-child(2), td:nth-child(3) { 
-            display: inline-block;
-            padding: 0;
-            border: none;
-            font-size: 12px;
-            color: #55524b;
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
-        td:nth-child(2)::before { content: "Type: "; font-weight: 600; }
-        td:nth-child(3)::before { content: "Package: "; font-weight: 600; }
-
-        /* Specs - Third Row Grid */
-        td:nth-child(4), td:nth-child(5), td:nth-child(6), td:nth-child(7) {
-            display: inline-block;
-            padding: 0;
-            border: none;
-            font-size: 13px;
-            margin-right: 12px;
-            margin-bottom: 4px;
-        }
-        td:nth-child(4)::before { content: "VCEO: "; color: #55524b; }
-        td:nth-child(5)::before { content: "IC: "; color: #55524b; }
-        td:nth-child(6)::before { content: "hFE: "; color: #55524b; }
-        td:nth-child(7)::before { content: "Pd: "; color: #55524b; }
-
-        /* Badge */
-        td:nth-child(8) {
-            display: inline-block;
-            padding: 0;
-            border: none;
-            font-size: 11px;
-            color: #777;
-        }
+    td:nth-child(4)::before { content: "VCEO: "; font-weight: 600; }
+    td:nth-child(5)::before { content: "IC: "; font-weight: 600; }
+    td:nth-child(6)::before { content: "hFE: "; font-weight: 600; }
+    td:nth-child(7)::before { content: "Pd: "; font-weight: 600; }
+    
+    /* Badge - Last Row */
+    td:nth-child(8) {
+        font-size: 12px;
+        color: #777;
+        margin-top: 4px;
     }
-
-    @media (max-width: 480px) {
-        h1 { font-size: 22px; }
-        .selector-card h3 { font-size: 15px; }
-    }
+}
 </style>
 <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
 </head>
@@ -259,136 +290,153 @@
 
     <main>
         <section class="hero">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a> <span>›</span>
+                <span>Transistor Equivalent Finder</span>
+            </nav>
+            
             <h1>Transistor Equivalent Finder Tool</h1>
             <p class="instruction-text">
-                Enter your <strong>minimum requirements</strong> below. The tool will search our database and find all parts that meet or exceed your specifications.
+                Enter your <strong>minimum requirements</strong> below and find all transistors that meet or exceed your specifications.
             </p>
 
             <!-- Selector Switches -->
             <div class="selector-container">
                 <div class="selector-card active" id="btn-bjt">
                     <h3>BJT Transistor</h3>
-                    <p>NPN, PNP, Darlington</p>
+                    <p>NPN / PNP bipolar junction transistors</p>
                 </div>
                 <div class="selector-card inactive" id="btn-fet">
-                    <h3>FET (Field-Effect)</h3>
-                    <p>MOSFET, JFET</p>
+                    <h3>FET / MOSFET</h3>
+                    <p>N-Channel / P-Channel field-effect transistors</p>
                 </div>
             </div>
 
-            <!-- Search Panel -->
+            <!-- Search Form -->
             <div class="search-panel">
                 <div class="form-grid">
                     <div class="input-group">
                         <label for="input-type">Type</label>
                         <select class="form-control" id="input-type">
-                            <option value="">Any Type</option>
+                            <option value="">Any</option>
                         </select>
                     </div>
+
                     <div class="input-group">
                         <label for="input-package">Package</label>
                         <select class="form-control" id="input-package">
-                            <option value="">Any Package</option>
+                            <option value="">Any</option>
                         </select>
                     </div>
+
                     <div class="input-group">
                         <label for="input-vceo">Min VCEO (V)</label>
-                        <input type="number" class="form-control" id="input-vceo" placeholder="e.g. 40">
+                        <input class="form-control" id="input-vceo" placeholder="e.g. 50" type="number"/>
                     </div>
+
                     <div class="input-group">
-                        <label for="input-ic">Min IC (A)</label>
-                        <input type="number" step="0.001" class="form-control" id="input-ic" placeholder="e.g. 0.2">
+                        <label for="input-ic">Min Ic (A)</label>
+                        <input class="form-control" id="input-ic" placeholder="e.g. 0.15" step="0.01" type="number"/>
                     </div>
+
                     <div class="input-group">
                         <label for="input-hfe">Min hFE</label>
-                        <input type="number" class="form-control" id="input-hfe" placeholder="e.g. 100">
+                        <input class="form-control" id="input-hfe" placeholder="e.g. 100" type="number"/>
                     </div>
+
                     <div class="input-group">
                         <label for="input-badge">Application</label>
                         <select class="form-control" id="input-badge">
-                            <option value="">Any Use</option>
+                            <option value="">Any</option>
                         </select>
                     </div>
                 </div>
-                <button class="btn btn-primary" id="btn-search" onclick="performSearch()">Search Equivalents</button>
+
+                <button class="btn btn-primary" id="btn-search" onclick="performSearch()">Find Equivalents</button>
                 <div class="error-msg" id="error-msg"></div>
+            </div>
+
+            <!-- How to Use -->
+            <div class="how-to-use">
+                <h3>How to Use This Tool</h3>
+                <ol>
+                    <li>Select transistor type (BJT or FET/MOSFET)</li>
+                    <li>Enter your minimum requirements (voltage, current, gain)</li>
+                    <li>Click "Find Equivalents" to view compatible alternatives</li>
+                </ol>
             </div>
         </section>
 
         <!-- Results Section -->
-        <section class="results-container" id="results-section">
+        <div class="results-container" id="results-section">
             <div class="results-header">
-                <span id="results-count-text">Ready to search</span>
+                <span class="results-count" id="results-count-text">Results</span>
             </div>
             <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
-                            <th>Part</th>
+                            <th>Part Number</th>
                             <th>Type</th>
                             <th>Package</th>
                             <th>VCEO</th>
-                            <th>IC</th>
+                            <th>Ic</th>
                             <th>hFE</th>
                             <th>Pd</th>
-                            <th>Badge</th>
+                            <th>Application</th>
                         </tr>
                     </thead>
                     <tbody id="results-body"></tbody>
                 </table>
             </div>
-        </section>
+        </div>
 
-        <!-- When to Choose Guide -->
+        <!-- When to Choose Section -->
         <section class="content-section">
-            <h2 class="section-title">When to Choose Each Transistor Type</h2>
-            <div class="info-box">
-                <div class="type-guide">
-                    <div class="type-title">BJT (Bipolar Junction Transistor)</div>
-                    <div class="type-desc">Best for amplification in audio circuits, radio receivers, Arduino switching projects, relay drivers, LED control, and low-frequency signal processing.</div>
+            <h2 class="section-title">When to Choose BJT vs FET</h2>
+            <div class="comparison-box">
+                <div class="comparison-item">
+                    <h3>BJT (Bipolar Junction Transistor)</h3>
+                    <p>Best for audio amplification, radio circuits, Arduino projects, LED drivers, and low-frequency switching applications. Current-controlled devices with high gain.</p>
                 </div>
-                <div class="type-guide">
-                    <div class="type-title">MOSFET (Metal-Oxide-Semiconductor FET)</div>
-                    <div class="type-desc">Ideal for high-efficiency switching in motor controllers, DC-DC converters, battery management, PWM circuits, and high-power LED drivers.</div>
-                </div>
-                <div class="type-guide">
-                    <div class="type-title">JFET (Junction Field-Effect Transistor)</div>
-                    <div class="type-desc">Preferred for low-noise RF amplifiers, guitar pedal circuits, sensor interfaces, and analog applications requiring high input impedance.</div>
+                <div class="comparison-item">
+                    <h3>FET / MOSFET</h3>
+                    <p>Best for high-speed switching, motor control, power supplies, DC-DC converters, and high-frequency circuits. Voltage-controlled with low gate power consumption.</p>
                 </div>
             </div>
         </section>
 
         <!-- FAQ Section -->
         <section class="content-section">
-            <h2 class="section-title">How to Choose a Transistor Equivalent</h2>
-
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
             <div class="faq-item">
-                <h3 class="faq-question">1. Match Polarity (NPN vs. PNP)</h3>
-                <p class="faq-answer">This is the most fundamental rule. You must replace an NPN transistor with another NPN, and a PNP with a PNP. They control current in opposite ways and are not interchangeable.</p>
+                <h3 class="faq-question">Do I need to match polarity (NPN vs PNP)?</h3>
+                <p class="faq-answer">Yes, absolutely. NPN and PNP transistors control current in opposite ways and cannot be swapped. Always replace an NPN with an NPN, and a PNP with a PNP.</p>
             </div>
 
             <div class="faq-item">
-                <h3 class="faq-question">2. Voltage Rating (VCEO) Must Be Equal or Higher</h3>
-                <p class="faq-answer">The Collector-Emitter Voltage (VCEO) is the maximum voltage the transistor can withstand when it is in the 'off' state. Your replacement part must have a VCEO equal to or greater than the original transistor. Using a part with a lower rating will cause it to break down.</p>
+                <h3 class="faq-question">Can I use a transistor with a higher VCEO rating?</h3>
+                <p class="faq-answer">Yes. The VCEO (Collector-Emitter Voltage) is the maximum voltage the transistor can handle when off. Using a part with a higher rating is safe and often recommended. Never use a lower rating, as it will cause breakdown.</p>
             </div>
 
             <div class="faq-item">
-                <h3 class="faq-question">3. Current Rating (IC) Must Be Equal or Higher</h3>
-                <p class="faq-answer">The Collector Current (IC) is the maximum amount of current the transistor can handle continuously. The replacement must have an IC rating equal to or greater than the original part to avoid overheating and failure.</p>
+                <h3 class="faq-question">What if the current rating (Ic) is higher?</h3>
+                <p class="faq-answer">That's perfectly fine. A higher Ic rating means the replacement can handle more current, which gives you a safety margin. Just ensure it's equal to or greater than your original part to avoid overheating.</p>
             </div>
 
             <div class="faq-item">
-                <h3 class="faq-question">4. Physical Package and Pinout</h3>
-                <p class="faq-answer">The replacement must physically fit on your circuit board. Check if the original is a through-hole (like TO-92) or surface-mount (like SOT-23) component. You must also verify the pinout (the order of the Emitter, Base, and Collector pins) is the same, or you will have to adjust your layout.</p>
+                <h3 class="faq-question">Does the physical package and pinout matter?</h3>
+                <p class="faq-answer">Yes, very much. The replacement must physically fit on your circuit board (e.g., TO-92 for through-hole, SOT-23 for surface-mount). You must also verify the pinout (the order of Emitter, Base, and Collector pins) matches, or you'll need to modify your layout.</p>
             </div>
         </section>
-
     </main>
 
     <footer>
         <p>TransistorDatabase | 2026</p>
         <p style="margin-top:10px;">
-            <a href="index.html">Home</a> · <a href="sitemap.html">Site Map</a>
+            <a href="index.html">Home</a> ·
+            <a href="sitemap.html">Site Map</a>
         </p>
     </footer>
 </div>
@@ -397,8 +445,8 @@
     // ==========================================
     // CONFIGURATION
     // ==========================================
-    const API_URL = "transistor-search-api.arunandfibo.workers.dev";
-
+    const API_URL = "https://transistor-search-api.your-worker.workers.dev/search";
+    let currentMode = "bjt"; 
     let dropdownOptions = {};
     let typePackageMapping = {};
 
@@ -407,20 +455,16 @@
     // ==========================================
     document.addEventListener("DOMContentLoaded", async () => {
         try {
-            // 1. Load Dropdown Options
             const dropdownRes = await fetch('bjt-dropdown-options.json');
             dropdownOptions = await dropdownRes.json();
             
-            // 2. Load Mapping Logic
             const mappingRes = await fetch('bjt-type-package-mapping.json');
             typePackageMapping = await mappingRes.json();
 
-            // 3. Populate Initial Dropdowns
             populateSelect('input-type', dropdownOptions.types);
             populateSelect('input-package', dropdownOptions.packages);
             populateSelect('input-badge', dropdownOptions.badges);
 
-            // 4. Setup Event Listener for Smart Filtering
             document.getElementById('input-type').addEventListener('change', handleTypeChange);
 
         } catch (error) {
@@ -429,6 +473,35 @@
             document.getElementById('error-msg').style.display = 'block';
         }
     });
+
+    // ==========================================
+    // MODE SWITCHING (BJT vs FET)
+    // ==========================================
+    document.getElementById('btn-bjt').addEventListener('click', () => switchMode('bjt'));
+    document.getElementById('btn-fet').addEventListener('click', () => switchMode('fet'));
+
+    function switchMode(mode) {
+        currentMode = mode;
+
+        const bjtBtn = document.getElementById('btn-bjt');
+        const fetBtn = document.getElementById('btn-fet');
+        const resultsSection = document.getElementById('results-section');
+
+        if (mode === 'bjt') {
+            bjtBtn.classList.add('active');
+            bjtBtn.classList.remove('inactive');
+            fetBtn.classList.remove('active');
+            fetBtn.classList.add('inactive');
+        } else {
+            fetBtn.classList.add('active');
+            fetBtn.classList.remove('inactive');
+            bjtBtn.classList.remove('active');
+            bjtBtn.classList.add('inactive');
+        }
+
+        resultsSection.style.display = 'none';
+        document.getElementById('error-msg').style.display = 'none';
+    }
 
     // ==========================================
     // UI HELPERS
@@ -543,11 +616,11 @@
                 <td>${partLink}</td>
                 <td>${part.type || '-'}</td>
                 <td>${part.package || '-'}</td>
-                <td data-label="VCEO">${part.vceo ? part.vceo + 'V' : '-'}</td>
-                <td data-label="IC">${part.ic ? part.ic + 'A' : '-'}</td>
-                <td data-label="hFE">${part.hfe ? part.hfe : '-'}</td>
-                <td data-label="Pd">${part.pd ? part.pd + 'W' : '-'}</td>
-                <td data-label="Badge" style="font-size:12px; color:#666;">${part.badge || ''}</td>
+                <td>${part.vceo ? part.vceo + 'V' : '-'}</td>
+                <td>${part.ic ? part.ic + 'A' : '-'}</td>
+                <td>${part.hfe ? part.hfe : '-'}</td>
+                <td>${part.pd ? part.pd + 'W' : '-'}</td>
+                <td style="font-size:12px; color:#666;">${part.badge || ''}</td>
             `;
             tbody.appendChild(row);
         });
@@ -564,30 +637,9 @@
     function resetBtn() {
         const btn = document.getElementById('btn-search');
         btn.disabled = false;
-        btn.innerText = "Search Equivalents";
+        btn.innerText = "Find Equivalents";
     }
-
-    // ==========================================
-    // BJT/FET SELECTOR TOGGLE
-    // ==========================================
-    document.getElementById('btn-bjt').addEventListener('click', function() {
-        if (this.classList.contains('active')) return;
-        
-        this.classList.remove('inactive');
-        this.classList.add('active');
-        
-        const fetBtn = document.getElementById('btn-fet');
-        fetBtn.classList.remove('active');
-        fetBtn.classList.add('inactive');
-        
-        alert("BJT mode active. FET search coming soon!");
-    });
-
-    document.getElementById('btn-fet').addEventListener('click', function() {
-        alert("FET search coming soon! Currently only BJT transistors are supported.");
-    });
 </script>
 
 </body>
 </html>
-
