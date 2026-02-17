@@ -111,7 +111,7 @@ h1 { font-size: 26px; font-weight: 600; color: #2c2417; margin-bottom: 8px; line
 .selector-container { display: flex; gap: 12px; margin-bottom: 20px; }
 .selector-card {
     padding: 14px 20px; border: 2px solid #e5e3db; border-radius: 6px; cursor: pointer;
-    background: #ffffff; transition: all 0.2s ease; position: relative;
+    background: #ffffff; transition: all 0.2s ease; position: relative; flex: 1;
 }
 .selector-card h3 { font-size: 16px; margin-bottom: 2px; color: #2c2417; font-weight: 600; }
 .selector-card p { font-size: 12px; color: #55524b; line-height: 1.4; }
@@ -156,14 +156,11 @@ h1 { font-size: 26px; font-weight: 600; color: #2c2417; margin-bottom: 8px; line
 
 /* ---- Results Section ---- */
 .results-container { padding: 32px 24px; display: none; }
-.results-header {
-    background: #faf9f6; color: #2c2417; padding: 12px 16px;
-    border-radius: 6px 6px 0 0; border: 1px solid #e5e3db; border-bottom: none;
-}
-.results-count { font-weight: 600; font-size: 14px; }
+/* Found X Equivalents - Plain text outside box */
+.results-count { font-weight: 600; font-size: 16px; color: #2c2417; margin-bottom: 16px; display: block; }
 
 /* ---- Desktop Table ---- */
-.table-wrapper { border: 1px solid #e5e3db; border-top: none; border-radius: 0 0 6px 6px; overflow-x: auto; }
+.table-wrapper { border: 1px solid #e5e3db; border-top: 1px solid #e5e3db; border-radius: 6px; overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
 thead { background: #2c2417; color: #faf9f6; }
 th { text-align: left; padding: 12px 14px; font-weight: 600; font-size: 12px; text-transform: uppercase; white-space: nowrap; }
@@ -171,15 +168,8 @@ td { padding: 12px 14px; border-bottom: 1px solid #f0eee8; color: #2c2417; white
 tbody tr:hover { background: #fffcf9; }
 td a { color: #865a2e; text-decoration: underline; font-weight: 600; }
 
-/* Controlled column widths */
-table td:nth-child(1), table th:nth-child(1) { width: auto; min-width: 160px; }
-table td:nth-child(2), table th:nth-child(2) { width: 70px; }
-table td:nth-child(3), table th:nth-child(3) { width: 90px; }
-table td:nth-child(4), table th:nth-child(4) { width: 70px; }
-table td:nth-child(5), table th:nth-child(5) { width: 70px; }
-table td:nth-child(6), table th:nth-child(6) { width: 70px; }
-table td:nth-child(7), table th:nth-child(7) { width: 70px; }
-table td:nth-child(8), table th:nth-child(8) { width: 120px; font-size: 12px; color: #55524b; }
+/* Desktop Badge Column - Normal Style */
+td:nth-child(8) { font-size: 13px; color: #55524b; }
 
 /* ---- Footer ---- */
 footer { padding: 32px 24px; background: #2c2417; color: #d4d2ca; text-align: center; font-size: 13px; }
@@ -187,77 +177,65 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
 
 
 /* =======================================================
-   MOBILE: Card Grid Layout
-   Each <tr> becomes a card.
-   Specs displayed in a 3-column grid with dividing lines.
-   Layout:
-   ┌────────────────────────────┐
-   │ Part Name        [Badge]   │
-   ├──────────┬────────┬────────┤
-   │ Type     │ Pkg    │ VCEO   │
-   │ NPN      │ SOT-23 │ 50V    │
-   ├──────────┼────────┼────────┤
-   │ IC       │ hFE    │ Pd     │
-   │ 0.15A    │ 270    │ 150mW  │
-   └──────────┴────────┴────────┘
+   MOBILE OPTIMIZATION: STRICT GRID LAYOUT
    ======================================================= */
 @media (max-width: 768px) {
-
     h1 { font-size: 22px; }
     .selector-container { flex-direction: column; }
     .comparison-box { grid-template-columns: 1fr; gap: 16px; }
     .form-row { grid-template-columns: 1fr; }
 
-    /* Hide desktop table; show block structure */
+    /* Remove Table Structure */
     .table-wrapper { border: none; background: transparent; overflow: visible; }
     table, thead, tbody { display: block; }
-    thead { display: none; }
+    thead { display: none; } /* Hide Header */
 
-    /* Each row = card */
+    /* The Card Container (Row) */
     table tbody tr {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: auto auto auto auto;
-        border: 1px solid #e5e3db;
-        border-radius: 8px;
-        margin-bottom: 12px;
-        overflow: hidden;
+        /* 3 Equal Columns */
+        grid-template-columns: 1fr 1fr 1fr;
+        /* Rows: Name, Badge (optional), Specs Row 1, Specs Row 2 */
+        grid-auto-rows: auto;
+        
+        border: 1px solid #d4d2ca; /* Outer Border */
+        border-radius: 6px;
+        margin-bottom: 20px;
         background: #ffffff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.03);
     }
 
-    /* ---- Row 1: Part Name (spans all 3 columns) ---- */
+    /* --- Part Name (Full Width Top) --- */
     table tbody td:nth-child(1) {
-        grid-column: 1 / 4;
-        grid-row: 1;
-        display: block;
-        padding: 14px 14px 12px 14px;
+        grid-column: 1 / -1; /* Span all 3 columns */
+        background: #fffcf9; /* Light header background */
+        padding: 12px;
+        border-bottom: 1px solid #d4d2ca;
         font-size: 16px;
-        font-weight: 600;
-        border-bottom: 1px solid #e5e3db;
-        white-space: normal;
-        word-break: break-all;
     }
 
-    /* ---- Row 2: Application Badge (spans all 3 columns) ---- */
+    /* --- Badge (Full Width under Name) --- */
     table tbody td:nth-child(8) {
-        grid-column: 1 / 4;
-        grid-row: 2;
-        display: block;
-        padding: 6px 14px 8px 14px;
-        font-size: 11px;
-        font-weight: 600;
-        color: #865a2e;
-        background: #fffcf9;
-        border-bottom: 1px solid #e5e3db;
+        grid-column: 1 / -1; /* Span all 3 columns */
+        padding: 0 12px;     /* No top/bottom padding yet */
     }
-    /* If badge is empty, collapse the row */
-    table tbody td:nth-child(8):empty {
-        padding: 0;
-        border-bottom: none;
+    /* Style the inner span of the badge */
+    .mobile-badge {
+        display: inline-block;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        background: #eef5ff;
+        color: #2c5282;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        border: 1px solid #bee3f8;
     }
+    table tbody td:nth-child(8):empty { display: none; }
 
-    /* ---- Rows 3 & 4: Spec Cells in 3-column grid ---- */
-    /* Each cell: label on top (via ::before), value below */
+    /* --- The 6 Data Cells (3x2 Grid) --- */
+    /* Common styling for all data cells */
     table tbody td:nth-child(2),
     table tbody td:nth-child(3),
     table tbody td:nth-child(4),
@@ -266,14 +244,28 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
     table tbody td:nth-child(7) {
         display: flex;
         flex-direction: column;
-        padding: 10px 12px;
-        white-space: normal;
-        font-size: 14px;
-        font-weight: 500;
-        color: #2c2417;
+        justify-content: center;
+        align-items: flex-start; /* Left Align */
+        padding: 10px;
+        border-right: 1px solid #e5e3db; /* Vertical Grid Lines */
+        border-bottom: 1px solid #e5e3db; /* Horizontal Grid Lines */
     }
 
-    /* Label via ::before — block, small, muted, above value */
+    /* Remove right border for the 3rd column items */
+    table tbody td:nth-child(4),
+    table tbody td:nth-child(7) {
+        border-right: none;
+    }
+
+    /* Remove bottom border for the last row (Row 4) */
+    table tbody td:nth-child(5),
+    table tbody td:nth-child(6),
+    table tbody td:nth-child(7) {
+        border-bottom: none;
+    }
+
+    /* Labels via ::before pseudo-element */
+    /* Using reddish/brown color for contrast but not standard black */
     table tbody td:nth-child(2)::before,
     table tbody td:nth-child(3)::before,
     table tbody td:nth-child(4)::before,
@@ -281,14 +273,13 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
     table tbody td:nth-child(6)::before,
     table tbody td:nth-child(7)::before {
         display: block;
-        font-size: 10px;
-        font-weight: 600;
-        color: #55524b;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        margin-bottom: 3px;
+        font-size: 11px; /* Readable size */
+        color: #a35656; /* Reddish/Brown for label contrast */
+        margin-bottom: 2px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     }
 
+    /* Label Content */
     table tbody td:nth-child(2)::before { content: "Type"; }
     table tbody td:nth-child(3)::before { content: "Package"; }
     table tbody td:nth-child(4)::before { content: "VCEO"; }
@@ -296,15 +287,12 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
     table tbody td:nth-child(6)::before { content: "hFE"; }
     table tbody td:nth-child(7)::before { content: "Pd"; }
 
-    /* Grid placement: row 3 = Type / Package / VCEO */
-    table tbody td:nth-child(2) { grid-column: 1; grid-row: 3; border-right: 1px solid #e5e3db; border-bottom: 1px solid #e5e3db; }
-    table tbody td:nth-child(3) { grid-column: 2; grid-row: 3; border-right: 1px solid #e5e3db; border-bottom: 1px solid #e5e3db; }
-    table tbody td:nth-child(4) { grid-column: 3; grid-row: 3; border-bottom: 1px solid #e5e3db; }
-
-    /* Grid placement: row 4 = IC / hFE / Pd */
-    table tbody td:nth-child(5) { grid-column: 1; grid-row: 4; border-right: 1px solid #e5e3db; }
-    table tbody td:nth-child(6) { grid-column: 2; grid-row: 4; border-right: 1px solid #e5e3db; }
-    table tbody td:nth-child(7) { grid-column: 3; grid-row: 4; }
+    /* Values */
+    table tbody td {
+        font-size: 14px;
+        color: #2c2417;
+        font-weight: 400; /* Normal weight */
+    }
 }
 </style>
 <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
@@ -338,7 +326,7 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
                 </div>
             </div>
 
-            <!-- Search Form — Row 1: dropdowns, Row 2: numeric inputs -->
+            <!-- Search Form -->
             <div class="search-panel">
                 <div class="form-row">
                     <div class="input-group">
@@ -360,6 +348,7 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
                         </select>
                     </div>
                 </div>
+                <!-- Corrected Labels: Min VCEO, Min IC, Min hFE -->
                 <div class="form-row">
                     <div class="input-group">
                         <label for="input-vceo">Min V<sub>CEO</sub> (V)</label>
@@ -381,20 +370,21 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
 
         <!-- Results Section -->
         <div class="results-container" id="results-section">
-            <div class="results-header">
-                <span class="results-count" id="results-count-text">Results</span>
-            </div>
+            <!-- Plain Text Count (Not in a box) -->
+            <div class="results-count" id="results-count-text">Results</div>
+            
             <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
+                            <!-- Corrected Headers -->
                             <th>Part Number</th>
                             <th>Type</th>
                             <th>Package</th>
-                            <th>V<sub style="font-size:10px;">CEO</sub></th>
-                            <th>I<sub style="font-size:10px;">C</sub></th>
-                            <th>h<sub style="font-size:10px;">FE</sub></th>
-                            <th>P<sub style="font-size:10px;">d</sub></th>
+                            <th>V<sub>CEO</sub></th>
+                            <th>I<sub>C</sub></th>
+                            <th>h<sub>FE</sub></th>
+                            <th>P<sub>d</sub></th>
                             <th>Application</th>
                         </tr>
                     </thead>
@@ -454,6 +444,7 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
 </div>
 
 <script>
+    // Ensure HTTPS is used
     const API_URL = "https://transistor-search-api.arunandfibo.workers.dev/search";
     let currentMode = "bjt";
     let dropdownOptions = {};
@@ -551,7 +542,7 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
             resetBtn(); return;
         }
         if (!criteria.min_vceo && !criteria.min_ic && !criteria.min_hfe) {
-            showError("Please enter at least one numeric requirement (VCEO, IC, or hFE).");
+            showError("Please enter at least one numeric requirement.");
             resetBtn(); return;
         }
 
@@ -580,13 +571,18 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
         if (data.total_matches > 50) countText.innerText += ` (Showing top 50)`;
 
         if (data.results.length === 0) {
-            showError("No parts found matching your criteria. Try lowering your minimum requirements.");
+            showError("No parts found matching your criteria.");
             return;
         }
 
         data.results.forEach(part => {
             const row = document.createElement('tr');
             const partLink = part.url ? `<a href="${part.url}" target="_blank">${part.part}</a>` : part.part;
+            
+            // For Mobile: Wrap badge in a span with a class for styling
+            // For Desktop: It stays in the last td
+            const badgeContent = part.badge ? `<span class="mobile-badge">${part.badge}</span>` : '';
+
             row.innerHTML = `
                 <td>${partLink}</td>
                 <td>${part.type || '-'}</td>
@@ -595,7 +591,7 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
                 <td>${part.ic ? part.ic + 'A' : '-'}</td>
                 <td>${part.hfe ? part.hfe : '-'}</td>
                 <td>${part.pd ? part.pd + 'W' : '-'}</td>
-                <td>${part.badge || ''}</td>
+                <td>${badgeContent}</td>
             `;
             tbody.appendChild(row);
         });
