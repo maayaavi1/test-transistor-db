@@ -108,20 +108,32 @@ h1 { font-size: 26px; font-weight: 600; color: #2c2417; margin-bottom: 8px; line
 .instruction-text { font-size: 13px; color: #55524b; margin-bottom: 20px; line-height: 1.5; }
 
 /* ---- Selector Boxes ---- */
-.selector-container { display: flex; gap: 12px; margin-bottom: 20px; }
+/* Fixed: Constrained width on desktop */
+.selector-container { display: flex; gap: 12px; margin-bottom: 20px; max-width: 600px; }
+
 .selector-card {
     padding: 14px 20px; border: 2px solid #e5e3db; border-radius: 6px; cursor: pointer;
     background: #ffffff; transition: all 0.2s ease; position: relative; flex: 1;
 }
 .selector-card h3 { font-size: 16px; margin-bottom: 2px; color: #2c2417; font-weight: 600; }
 .selector-card p { font-size: 12px; color: #55524b; line-height: 1.4; }
+
+/* Active State */
 .selector-card.active { border-color: #865a2e; background: #fffcf9; box-shadow: 0 2px 8px rgba(134,90,46,0.1); }
 .selector-card.active::after {
     content: "✔"; position: absolute; top: 8px; right: 8px;
     background: #865a2e; color: white; width: 20px; height: 20px;
     border-radius: 50%; text-align: center; font-size: 12px; line-height: 20px;
 }
-.selector-card.inactive { opacity: 0.6; filter: grayscale(1); cursor: not-allowed; }
+
+/* Inactive/Disabled State (Fixed for FET) */
+.selector-card.inactive { 
+    opacity: 0.5; 
+    filter: grayscale(1); 
+    cursor: not-allowed; 
+    border-color: #e5e3db;
+    background: #f5f5f0;
+}
 
 /* ---- Search Form ---- */
 .search-panel { background: #faf9f6; padding: 18px; border-radius: 6px; border: 1px solid #e5e3db; }
@@ -156,7 +168,6 @@ h1 { font-size: 26px; font-weight: 600; color: #2c2417; margin-bottom: 8px; line
 
 /* ---- Results Section ---- */
 .results-container { padding: 32px 24px; display: none; }
-/* Found X Equivalents - Plain text outside box */
 .results-count { font-weight: 600; font-size: 16px; color: #2c2417; margin-bottom: 16px; display: block; }
 
 /* ---- Desktop Table ---- */
@@ -168,7 +179,7 @@ td { padding: 12px 14px; border-bottom: 1px solid #f0eee8; color: #2c2417; white
 tbody tr:hover { background: #fffcf9; }
 td a { color: #865a2e; text-decoration: underline; font-weight: 600; }
 
-/* Desktop Badge Column - Normal Style */
+/* Badge Column for Desktop */
 td:nth-child(8) { font-size: 13px; color: #55524b; }
 
 /* ---- Footer ---- */
@@ -181,7 +192,8 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
    ======================================================= */
 @media (max-width: 768px) {
     h1 { font-size: 22px; }
-    .selector-container { flex-direction: column; }
+    /* Fix: Selector container full width on mobile, stack vertically */
+    .selector-container { flex-direction: column; max-width: 100%; }
     .comparison-box { grid-template-columns: 1fr; gap: 16px; }
     .form-row { grid-template-columns: 1fr; }
 
@@ -195,8 +207,8 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
         display: grid;
         /* 3 Equal Columns */
         grid-template-columns: 1fr 1fr 1fr;
-        /* Rows: Name, Badge (optional), Specs Row 1, Specs Row 2 */
-        grid-auto-rows: auto;
+        /* Rows: 1=Name, 2=Badge, 3=Specs1, 4=Specs2 */
+        grid-template-rows: auto auto auto auto;
         
         border: 1px solid #d4d2ca; /* Outer Border */
         border-radius: 6px;
@@ -205,37 +217,61 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
         box-shadow: 0 2px 4px rgba(0,0,0,0.03);
     }
 
-    /* --- Part Name (Full Width Top) --- */
+    /* --- Row 1: Part Name (Full Width) --- */
     table tbody td:nth-child(1) {
-        grid-column: 1 / -1; /* Span all 3 columns */
+        grid-column: 1 / -1;
+        grid-row: 1;
         background: #fffcf9; /* Light header background */
-        padding: 12px;
-        border-bottom: 1px solid #d4d2ca;
+        padding: 12px 12px 4px 12px; /* Less bottom padding so badge sits close */
         font-size: 16px;
+        border: none; /* Merged with badge row */
     }
 
-    /* --- Badge (Full Width under Name) --- */
+    /* --- Row 2: Badge (Full Width under Name) --- */
+    /* Fix: Moved Badge up to the header area, same background */
     table tbody td:nth-child(8) {
-        grid-column: 1 / -1; /* Span all 3 columns */
-        padding: 0 12px;     /* No top/bottom padding yet */
+        grid-column: 1 / -1;
+        grid-row: 2;
+        background: #fffcf9;
+        padding: 0 12px 12px 12px;
+        border-bottom: 1px solid #d4d2ca; /* Separator between Header and Grid */
     }
-    /* Style the inner span of the badge */
+    
+    /* Styling the badge text inside */
     .mobile-badge {
         display: inline-block;
-        margin-top: 8px;
-        margin-bottom: 8px;
         background: #eef5ff;
         color: #2c5282;
         padding: 4px 8px;
         border-radius: 4px;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 500;
         border: 1px solid #bee3f8;
     }
-    table tbody td:nth-child(8):empty { display: none; }
+    
+    /* If Badge is empty, hide the row but keep border on Name */
+    table tbody td:nth-child(8):empty {
+        display: none;
+    }
+    /* If badge is empty, add border to name cell so header closes */
+    table tbody tr:has(td:nth-child(8):empty) td:nth-child(1) {
+        border-bottom: 1px solid #d4d2ca;
+        padding-bottom: 12px;
+    }
 
-    /* --- The 6 Data Cells (3x2 Grid) --- */
-    /* Common styling for all data cells */
+    /* --- Rows 3 & 4: The Data Grid (3x2) --- */
+    
+    /* Grid Placement: Row 3 */
+    table tbody td:nth-child(2) { grid-column: 1; grid-row: 3; } /* Type */
+    table tbody td:nth-child(3) { grid-column: 2; grid-row: 3; } /* Package */
+    table tbody td:nth-child(4) { grid-column: 3; grid-row: 3; } /* VCEO */
+
+    /* Grid Placement: Row 4 */
+    table tbody td:nth-child(5) { grid-column: 1; grid-row: 4; } /* IC */
+    table tbody td:nth-child(6) { grid-column: 2; grid-row: 4; } /* hFE */
+    table tbody td:nth-child(7) { grid-column: 3; grid-row: 4; } /* Pd */
+
+    /* Styling for all data cells */
     table tbody td:nth-child(2),
     table tbody td:nth-child(3),
     table tbody td:nth-child(4),
@@ -247,25 +283,25 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
         justify-content: center;
         align-items: flex-start; /* Left Align */
         padding: 10px;
-        border-right: 1px solid #e5e3db; /* Vertical Grid Lines */
-        border-bottom: 1px solid #e5e3db; /* Horizontal Grid Lines */
+        border-right: 1px solid #e5e3db; /* Vertical Lines */
+        border-bottom: 1px solid #e5e3db; /* Horizontal Lines */
     }
 
-    /* Remove right border for the 3rd column items */
+    /* Remove right border for 3rd column */
     table tbody td:nth-child(4),
     table tbody td:nth-child(7) {
         border-right: none;
     }
 
-    /* Remove bottom border for the last row (Row 4) */
+    /* Remove bottom border for last row (Row 4) */
+    /* This fixes the "hanging lines" issue */
     table tbody td:nth-child(5),
     table tbody td:nth-child(6),
     table tbody td:nth-child(7) {
         border-bottom: none;
     }
 
-    /* Labels via ::before pseudo-element */
-    /* Using reddish/brown color for contrast but not standard black */
+    /* Labels */
     table tbody td:nth-child(2)::before,
     table tbody td:nth-child(3)::before,
     table tbody td:nth-child(4)::before,
@@ -273,8 +309,8 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
     table tbody td:nth-child(6)::before,
     table tbody td:nth-child(7)::before {
         display: block;
-        font-size: 11px; /* Readable size */
-        color: #a35656; /* Reddish/Brown for label contrast */
+        font-size: 11px;
+        color: #a35656; /* Reddish/Brown */
         margin-bottom: 2px;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     }
@@ -291,7 +327,7 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
     table tbody td {
         font-size: 14px;
         color: #2c2417;
-        font-weight: 400; /* Normal weight */
+        font-weight: 400;
     }
 }
 </style>
@@ -320,9 +356,10 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
                     <h3>BJT Transistor</h3>
                     <p>NPN / PNP bipolar junction transistors</p>
                 </div>
+                <!-- Fix: Disabled FET Selector -->
                 <div class="selector-card inactive" id="btn-fet">
                     <h3>FET / MOSFET</h3>
-                    <p>N-Channel / P-Channel field-effect transistors</p>
+                    <p>(Coming Soon) Database under construction</p>
                 </div>
             </div>
 
@@ -348,7 +385,7 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
                         </select>
                     </div>
                 </div>
-                <!-- Corrected Labels: Min VCEO, Min IC, Min hFE -->
+                <!-- Labels with Subscript -->
                 <div class="form-row">
                     <div class="input-group">
                         <label for="input-vceo">Min V<sub>CEO</sub> (V)</label>
@@ -370,14 +407,12 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
 
         <!-- Results Section -->
         <div class="results-container" id="results-section">
-            <!-- Plain Text Count (Not in a box) -->
             <div class="results-count" id="results-count-text">Results</div>
             
             <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
-                            <!-- Corrected Headers -->
                             <th>Part Number</th>
                             <th>Type</th>
                             <th>Package</th>
@@ -444,9 +479,7 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
 </div>
 
 <script>
-    // Ensure HTTPS is used
     const API_URL = "https://transistor-search-api.arunandfibo.workers.dev/search";
-    let currentMode = "bjt";
     let dropdownOptions = {};
     let typePackageMapping = {};
 
@@ -471,25 +504,8 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
         }
     });
 
-    document.getElementById('btn-bjt').addEventListener('click', () => switchMode('bjt'));
-    document.getElementById('btn-fet').addEventListener('click', () => switchMode('fet'));
-
-    function switchMode(mode) {
-        currentMode = mode;
-        const bjtBtn = document.getElementById('btn-bjt');
-        const fetBtn = document.getElementById('btn-fet');
-
-        if (mode === 'bjt') {
-            bjtBtn.classList.add('active'); bjtBtn.classList.remove('inactive');
-            fetBtn.classList.remove('active'); fetBtn.classList.add('inactive');
-        } else {
-            fetBtn.classList.add('active'); fetBtn.classList.remove('inactive');
-            bjtBtn.classList.remove('active'); bjtBtn.classList.add('inactive');
-        }
-
-        document.getElementById('results-section').style.display = 'none';
-        document.getElementById('error-msg').style.display = 'none';
-    }
+    // Fix: FET Selection Removed (Clicking FET does nothing)
+    // Only BJT is active by default.
 
     function populateSelect(elementId, options) {
         const select = document.getElementById(elementId);
@@ -579,8 +595,7 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
             const row = document.createElement('tr');
             const partLink = part.url ? `<a href="${part.url}" target="_blank">${part.part}</a>` : part.part;
             
-            // For Mobile: Wrap badge in a span with a class for styling
-            // For Desktop: It stays in the last td
+            // Fix: Badge is wrapped in a span for Mobile styling
             const badgeContent = part.badge ? `<span class="mobile-badge">${part.badge}</span>` : '';
 
             row.innerHTML = `
