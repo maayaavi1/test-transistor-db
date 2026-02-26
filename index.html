@@ -230,12 +230,23 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
     /* --- Row 2: Badge (Full Width under Name) --- */
     /* Fix: Moved Badge up to the header area, same background */
     table tbody td:nth-child(8) {
-        grid-column: 1 / -1;
+       grid-column: 1 / -1;
         grid-row: 2;
         background: #fffcf9;
         padding: 0 12px 12px 12px;
-        border-bottom: 1px solid #d4d2ca; /* Separator between Header and Grid */
+        border-bottom: 1px solid #d4d2ca;
+        
+        /* Flexbox to push Badge to Left and PDF to Right */
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+        min-height: 35px; /* Ensures row exists even if empty */
     }
+    
+    /* If both are empty, hide the row */
+    table tbody td:nth-child(8):empty {
+        display: none;
+  }
     
     /* Styling the badge text inside */
     .mobile-badge {
@@ -249,10 +260,6 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
         border: 1px solid #bee3f8;
     }
     
-    /* If Badge is empty, hide the row but keep border on Name */
-    table tbody td:nth-child(8):empty {
-        display: none;
-    }
     /* If badge is empty, add border to name cell so header closes */
     table tbody tr:has(td:nth-child(8):empty) td:nth-child(1) {
         border-bottom: 1px solid #d4d2ca;
@@ -329,6 +336,24 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
         color: #2c2417;
         font-weight: 400;
     }
+}
+/* PDF Button Style (No image needed) */
+.pdf-btn {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #d32f2f; /* PDF Red */
+    background: #fff0f0;
+    border: 1px solid #ffcdd2;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-decoration: none !important;
+    margin-left: 8px;
+    white-space: nowrap;
+}
+.pdf-btn:hover {
+    background: #d32f2f;
+    color: white;
 }
 </style>
 <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
@@ -593,10 +618,17 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
 
         data.results.forEach(part => {
             const row = document.createElement('tr');
+            
+            // 1. Part Name Link
             const partLink = part.url ? `<a href="${part.url}" target="_blank">${part.part}</a>` : part.part;
             
-            // Fix: Badge is wrapped in a span for Mobile styling
-            const badgeContent = part.badge ? `<span class="mobile-badge">${part.badge}</span>` : '';
+            // 2. Badge Logic (Mobile wrapper)
+            const badgeHtml = part.badge ? `<span class="mobile-badge">${part.badge}</span>` : '<span></span>'; // Empty span keeps flex layout working
+
+            // 3. PDF Button Logic
+            // If datasheet link exists, create button. If not, empty string.
+            const pdfHtml = part.datasheet ? 
+                `<a href="${part.datasheet}" target="_blank" class="pdf-btn">📄 PDF</a>` : '';
 
             row.innerHTML = `
                 <td>${partLink}</td>
@@ -606,7 +638,9 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
                 <td>${part.ic ? part.ic + 'A' : '-'}</td>
                 <td>${part.hfe ? part.hfe : '-'}</td>
                 <td>${part.pd ? part.pd + 'W' : '-'}</td>
-                <td>${badgeContent}</td>
+                
+                <!-- Combined Column: Badge + PDF -->
+                <td>${badgeHtml} ${pdfHtml}</td>
             `;
             tbody.appendChild(row);
         });
@@ -628,4 +662,3 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
 </script>
 </body>
 </html>
-
