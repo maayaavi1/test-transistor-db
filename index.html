@@ -157,7 +157,7 @@ h1 { font-size: 26px; font-weight: 600; color: #2c2417; margin-bottom: 8px; line
 .section-title { font-size: 22px; font-weight: 600; color: #2c2417; margin-bottom: 16px; border-bottom: 2px solid #e5e3db; padding-bottom: 8px; }
 
 /* ---- BJT vs FET Comparison ---- */
-.comparison-box { background: #faf9f6; padding: 20px; border: 1px solid #e5e3db; border-radius: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.comparison-box { background: #faf9f6; padding: 20px; border: 1px solid #e5e3db; border-radius: 6px; display: grid; grid-template-columns: 1fr; gap: 20px; }
 .comparison-item h3 { font-size: 16px; font-weight: 600; color: #2c2417; margin-bottom: 8px; }
 .comparison-item p { font-size: 14px; color: #55524b; line-height: 1.6; }
 
@@ -352,10 +352,10 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
 .pdf-btn {
     display: inline-block;
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 550;
     color: #ffffff !important; /* White Text */
     background: #865a2e;       /* Brand Brown */
-    padding: 4px 10px;
+    padding: 4px 8px;
     border-radius: 4px;
     text-decoration: none !important;
     white-space: nowrap;
@@ -486,17 +486,17 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
 
             <div class="faq-item">
                 <h3 class="faq-question">1. Do I need to match polarity (NPN vs PNP)?</h3>
-                <p class="faq-answer">Yes, absolutely. NPN and PNP transistors control current in opposite ways and cannot be swapped. Always replace an NPN with an NPN, and a PNP with a PNP.</p>
+                <p class="faq-answer">Yes. NPN and PNP transistors control current in opposite ways and cannot be swapped. Always replace an NPN with an NPN, and a PNP with a PNP.</p>
             </div>
 
             <div class="faq-item">
                 <h3 class="faq-question">2. Can I use a transistor with a higher V<sub>CEO</sub> rating?</h3>
-                <p class="faq-answer">Yes. V<sub>CEO</sub> is the maximum voltage the transistor can handle when off. A higher rating is safe and often recommended — never use a lower rating, as it will cause breakdown.</p>
+                <p class="faq-answer">Yes. V<sub>CEO</sub> is the maximum voltage the transistor can handle when off. A higher rating is safe and often recommended - never use a lower rating, as it will cause breakdown.</p>
             </div>
 
             <div class="faq-item">
                 <h3 class="faq-question">3. What if the current rating (I<sub>C</sub>) is higher?</h3>
-                <p class="faq-answer">That's perfectly fine. A higher I<sub>C</sub> gives you a safety margin. Just ensure it's equal to or greater than your original part — never lower, as it risks overheating and failure.</p>
+                <p class="faq-answer">That's perfectly fine. A higher I<sub>C</sub> gives you a safety margin. Just ensure it's equal to or greater than your original part - never lower, as it risks overheating and failure.</p>
             </div>
 
             <div class="faq-item">
@@ -674,4 +674,5 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
 </script>
 </body>
 </html>
+
 
