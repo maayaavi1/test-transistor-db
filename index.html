@@ -179,9 +179,16 @@ td { padding: 12px 14px; border-bottom: 1px solid #f0eee8; color: #2c2417; white
 tbody tr:hover { background: #fffcf9; }
 td a { color: #865a2e; text-decoration: underline; font-weight: 600; }
 
-/* Badge Column for Desktop */
-td:nth-child(8) { font-size: 13px; color: #55524b; }
-
+/* Badge Column for Desktop - Flexbox for Button Alignment */
+td:nth-child(8) { 
+    font-size: 13px; 
+    color: #55524b;
+    /* This pushes text to left, button to right */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 8px; /* Little breathing room on the right */
+}
 /* ---- Footer ---- */
 footer { padding: 32px 24px; background: #2c2417; color: #d4d2ca; text-align: center; font-size: 13px; }
 footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
@@ -219,12 +226,16 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
 
     /* --- Row 1: Part Name (Full Width) --- */
     table tbody td:nth-child(1) {
-        grid-column: 1 / -1;
+       grid-column: 1 / -1;
         grid-row: 1;
-        background: #fffcf9; /* Light header background */
-        padding: 12px 12px 8px 12px; /* Less bottom padding so badge sits close */
+        background: #fffcf9; 
+        padding: 12px 12px 8px 12px; 
         font-size: 16px;
-        border: none; /* Merged with badge row */
+        border: none; 
+
+        /* ADD THESE 2 LINES TO FIX THE GAPS: */
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
     }
 
     /* --- Row 2: Badge (Full Width under Name) --- */
@@ -342,18 +353,19 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
     display: inline-block;
     font-size: 11px;
     font-weight: 700;
-    color: #d32f2f; /* PDF Red */
-    background: #fff0f0;
-    border: 1px solid #ffcdd2;
-    padding: 2px 6px;
+    color: #ffffff !important; /* White Text */
+    background: #865a2e;       /* Brand Brown */
+    padding: 4px 10px;
     border-radius: 4px;
     text-decoration: none !important;
-    margin-left: 8px;
     white-space: nowrap;
+    transition: background 0.2s;
+    border: none;              /* No border for cleaner look */
+    line-height: 1.2;
 }
 .pdf-btn:hover {
-    background: #d32f2f;
-    color: white;
+    background: #6d4925;       /* Darker Brown on Hover */
+    cursor: pointer;
 }
 </style>
 <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
@@ -662,3 +674,4 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
 </script>
 </body>
 </html>
+
