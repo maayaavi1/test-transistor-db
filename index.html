@@ -189,6 +189,48 @@ td:nth-child(8) {
     align-items: center;
     padding-right: 8px; /* Little breathing room on the right */
 }
+
+/* ---- NEW: PART NUMBER SEARCH UI ---- */
+.part-search-box {
+    background: #faf9f6;
+    border: 1px solid #e5e3db;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+.part-search-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #55524b;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+}
+.part-search-flex { display: flex; gap: 12px; }
+.part-search-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #d4d2ca;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #2c2417;
+}
+.part-search-input:focus { outline: none; border-color: #865a2e; box-shadow: 0 0 0 2px rgba(134,90,46,0.1); }
+#quick-results-area { margin-top: 16px; background: #ffffff; border-radius: 6px; border: 1px solid #e5e3db; display: none; }
+.quick-result-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid #e5e3db; }
+.quick-result-item:last-child { border-bottom: none; }
+.quick-result-part { font-size: 15px; font-weight: 600; }
+.quick-result-meta { font-size: 13px; color: #55524b; margin-left: 8px; }
+.quick-result-link { font-size: 13px; font-weight: 600; color: #ffffff; background: #865a2e; padding: 6px 12px; border-radius: 4px; text-decoration: none; white-space: nowrap;}
+.quick-result-link:hover { background: #6d4925; }
+
+/* ---- DIVIDER ---- */
+.divider { display: flex; align-items: center; text-align: center; margin: 32px 0; color: #999; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;}
+.divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #e5e3db; }
+.divider:not(:empty)::before { margin-right: 15px; }
+.divider:not(:empty)::after { margin-left: 15px; }
+
 /* ---- Footer ---- */
 footer { padding: 32px 24px; background: #2c2417; color: #d4d2ca; text-align: center; font-size: 13px; }
 footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
@@ -223,6 +265,11 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
         background: #ffffff;
         box-shadow: 0 2px 4px rgba(0,0,0,0.03);
     }
+
+    /* --- newly testing part number search --- */
+
+    .part-search-flex { flex-direction: column; }
+    .quick-result-item { flex-direction: column; align-items: flex-start; gap: 10px; }
 
     /* --- Row 1: Part Name (Full Width) --- */
     table tbody td:nth-child(1) {
@@ -385,43 +432,47 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
             </nav>
 
             <h1>Transistor Equivalent Finder Tool</h1>
-            <p class="instruction-text">Choose BJT or FET/MOSFET, then enter at least 2 specifications to start your search.</p>
+            <p class="instruction-text">Find a replacement by part number, or search by specifications below.</p>
 
-            <!-- Selector Switches -->
-            <div class="selector-container">
-                <div class="selector-card active" id="btn-bjt">
-                    <h3>BJT Transistor</h3>
-                    <p>NPN / PNP bipolar junction transistors</p>
-                </div>
-                <!-- Fix: Disabled FET Selector -->
-                <div class="selector-card inactive" id="btn-fet">
-                    <h3>FET / MOSFET</h3>
-                    <p>(Coming Soon) Database under construction</p>
-                </div>
-            </div>
+<!-- NEW: PART NUMBER SEARCH BOX -->
+<div class="part-search-box">
+    <label for="input-part-number" class="part-search-label">Know Your Part Number?</label>
+    <div class="part-search-flex">
+        <input type="text" id="input-part-number" class="part-search-input" placeholder="e.g. 2N2222, BC547, TIP31..." onkeypress="if(event.key === 'Enter') searchByPartNumber()">
+        <button class="btn-primary" id="btn-part-search" onclick="searchByPartNumber()">Search Part</button>
+    </div>
+    <div id="quick-results-area"></div>
+    <div class="error-msg" id="quick-error-msg"></div>
+</div>
 
-            <!-- Search Form -->
-            <div class="search-panel">
-                <div class="form-row">
-                    <div class="input-group">
-                        <label for="input-type">Type</label>
-                        <select class="form-control" id="input-type">
-                            <option value="">Any</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label for="input-package">Package</label>
-                        <select class="form-control" id="input-package">
-                            <option value="">Any</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label for="input-badge">Application</label>
-                        <select class="form-control" id="input-badge">
-                            <option value="">Any</option>
-                        </select>
-                    </div>
-                </div>
+<!-- NEW: DIVIDER -->
+<div class="divider">or do a parametric search</div>
+
+<!-- CORRECTED: PARAMETRIC SEARCH PANEL -->
+<div class="search-panel">
+    <!-- BJT/FET Selectors are NOW INSIDE this panel -->
+    <div class="selector-container">
+        <div class="selector-card active" id="btn-bjt">
+            <h3>BJT Transistor</h3>
+            <p>NPN / PNP bipolar junction</p>
+        </div>
+        <div class="selector-card inactive" id="btn-fet">
+            <h3>FET / MOSFET</h3>
+            <p>(Coming Soon) Database under construction</p>
+        </div>
+    </div>
+    
+    <!-- Existing form rows... -->
+    <div class="form-row">
+        ... (your existing form rows for Type, Package, etc. go here)
+    </div>
+    <div class="form-row">
+        ... (your existing form rows for VCEO, IC, etc. go here)
+    }
+    </div>
+    <button class="btn-primary" id="btn-search" onclick="performSearch()">Find Equivalents</button>
+    <div class="error-msg" id="error-msg"></div>
+</div>
                 <!-- Labels with Subscript -->
                 <div class="form-row">
                     <div class="input-group">
@@ -671,8 +722,64 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
         btn.disabled = false;
         btn.innerText = "Find Equivalents";
     }
+
+  // --- NEW FUNCTION for Part Number Search ---
+async function searchByPartNumber() {
+    const input = document.getElementById('input-part-number').value.trim();
+    const btn = document.getElementById('btn-part-search');
+    const errorMsg = document.getElementById('quick-error-msg');
+    const resultsArea = document.getElementById('quick-results-area');
+
+    errorMsg.style.display = 'none';
+    resultsArea.style.display = 'none';
+    resultsArea.innerHTML = '';
+
+    if (input.length < 2) {
+        errorMsg.innerText = "Please enter at least 2 characters.";
+        errorMsg.style.display = 'block';
+        return;
+    }
+
+    btn.innerText = "Searching...";
+    btn.disabled = true;
+
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ part_number: input })
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || "Search failed");
+
+        if (data.results.length === 0) {
+            errorMsg.innerText = "No parts found containing '" + input + "'. Please check the spelling.";
+            errorMsg.style.display = 'block';
+        } else {
+            let html = '';
+            data.results.forEach(part => {
+                const link = part.url || '#';
+                html += `
+                <div class="quick-result-item">
+                    <div>
+                        <span class="quick-result-part">${part.part}</span>
+                        <span class="quick-result-meta">(${part.type || '-'}, ${part.package || '-'})</span>
+                    </div>
+                    <a href="${link}" class="quick-result-link" target="_blank">View Equivalents →</a>
+                </div>`;
+            });
+            resultsArea.innerHTML = html;
+            resultsArea.style.display = 'block';
+        }
+    } catch (err) {
+        errorMsg.innerText = "Error: " + err.message;
+        errorMsg.style.display = 'block';
+    } finally {
+        btn.innerText = "Search Part";
+        btn.disabled = false;
+    }
+}
+  
 </script>
 </body>
 </html>
-
-
