@@ -213,9 +213,8 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
 .part-results-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
 .btn-new-search { background: #6b21a8; color: white; }
 .btn-new-search:hover { background: #581c87; }
-.part-results-count { font-size: 14px; color: #55524b; }
-.part-results-count strong { color: #2c2417; }
-
+.part-results-count { font-size: 16px; font-weight: 600; color: #2c2417; }
+  
 /* Part cards grid */
 .part-cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .part-card {
@@ -717,9 +716,9 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
                 </div>`;
             return;
         }
-
-        let countText = `<strong>${data.total_matches}</strong> part${data.total_matches !== 1 ? 's' : ''} found`;
-        if (data.total_matches > 50) countText = `Showing top 50 matches from our database`;
+        
+        let countText = `Found ${data.total_matches} part${data.total_matches !== 1 ? 's' : ''}`;
+        if (data.total_matches > 50) countText += ` (Showing top 50)`;
         countEl.innerHTML = countText;
 
         const grid = document.createElement('div');
