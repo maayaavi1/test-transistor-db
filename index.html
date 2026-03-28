@@ -118,7 +118,7 @@ h1 { font-size: 26px; font-weight: 600; color: #2c2417; margin-bottom: 24px; lin
 .form-control { padding: 8px 10px; border: 1px solid #d4d2ca; border-radius: 4px; font-size: 14px; color: #2c2417; background: #ffffff; width: 100%; height: 38px; }
 .form-control:focus { outline: none; border-color: #865a2e; box-shadow: 0 0 0 2px rgba(134,90,46,0.1); }
 
-.btn { padding: 0 20px; height: 38px; border-radius: 6px; font-size: 14px; font-weight: 600; text-align: center; transition: 0.2s; border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.btn { padding: 0 14px; height: 38px; border-radius: 6px; font-size: 14px; font-weight: 600; text-align: center; transition: 0.2s; border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
 .btn-primary { background: #865a2e; color: white; }
 .btn-primary:hover { background: #6d4925; }
 .btn:disabled { background: #ccc; cursor: not-allowed; }
@@ -200,7 +200,10 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
     .comparison-box { grid-template-columns: 1fr; gap: 16px; }
     
     .part-number-form-row { flex-direction: column; align-items: flex-start; gap: 12px; }
-    .part-number-form-row .input-group, .part-number-form-row .btn { width: 100%; max-width: none !important; }
+    .part-number-form-row .input-group { width: 100%; max-width: none !important; }
+    .part-number-form-row .btn { width: auto; align-self: flex-start; }
+    .results-container { padding: 24px 16px; } /* Tighter mobile padding */
+    td:last-child { min-width: 0; } /* CRITICAL: Prevents mobile cards from overflowing */
     .form-row { grid-template-columns: 1fr; }
 
     .part-cards-grid { grid-template-columns: repeat(2, 1fr); }
@@ -488,8 +491,13 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
         const inputVal2 = document.getElementById('input-val2');
         const inputVal3 = document.getElementById('input-val3');
         
-        // Clear inputs on toggle
+        // Clear inputs & hide old results on toggle
         inputVal1.value = ""; inputVal2.value = ""; inputVal3.value = "";
+        document.getElementById('results-section').style.display = 'none';
+        document.getElementById('part-results-screen').style.display = 'none';
+        document.getElementById('search-area').style.display = 'block';
+
+        if (family === 'fet') {
 
         if (family === 'fet') {
             btnFet.className = 'selector-card active';
@@ -629,7 +637,10 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
         const thead = document.getElementById('results-head');
         const tbody = document.getElementById('results-body');
 
-        countText.innerText = `Found ${data.total_matches} parts`;
+        const fam = data.device_family || currentFamily; 
+        const familyText = fam === 'fet' ? 'FET/MOSFET' : 'BJT';
+        
+        countText.innerText = `Found ${data.total_matches} ${familyText} parts`;
         if (data.total_matches > 50) countText.innerText += ` (Showing top 50)`;
 
         if (data.results.length === 0) {
@@ -651,7 +662,12 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
         data.results.forEach(part => {
             const row = document.createElement('tr');
             const partLink = part.url ? `<a href="${part.url}" target="_blank">${part.part}</a>` : part.part;
-            const badgeHtml = part.badge && part.badge !== '-' ? `<span class="mobile-badge">${part.badge}</span>` : '<span></span>';
+            
+            // Truncate Manufacturer name to prevent stretching
+            let mfgName = part.badge && part.badge !== '-' ? part.badge : '';
+            if (mfgName.length > 15) mfgName = mfgName.substring(0, 13) + '...';
+            const badgeHtml = mfgName ? `<span class="mobile-badge">${mfgName}</span>` : '<span></span>';
+            
             const pdfHtml = part.datasheet && part.datasheet !== '#' && part.datasheet !== '-' ? 
                 `<a href="${part.datasheet}" target="_blank" class="pdf-btn">📄 PDF</a>` : '';
 
@@ -710,6 +726,7 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
         if (!query) return;
 
         errorEl.style.display = 'none';
+        document.getElementById('results-section').style.display = 'none'; // Hide parametric table
         btn.disabled = true;
         btn.innerText = "Searching...";
 
@@ -750,10 +767,11 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
             return;
         }
         
-        let countText = `Found ${data.total_matches} part${data.total_matches !== 1 ? 's' : ''}`;
+        const familyText = data.device_family === 'fet' ? 'FET/MOSFET ' : (data.device_family === 'bjt' ? 'BJT ' : '');
+        let countText = `Found ${data.total_matches} ${familyText}part${data.total_matches !== 1 ? 's' : ''}`;
         if (data.total_matches > 50) countText += ` (Showing top 50)`;
         countEl.innerHTML = countText;
-
+        
         const grid = document.createElement('div');
         grid.className = 'part-cards-grid';
 
