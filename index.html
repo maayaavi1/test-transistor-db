@@ -3,18 +3,22 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Transistor Equivalent Finder Tool - BJT & MOSFET Search</title>
-<meta name="description" content="Search over 6,000+ BJT and MOSFET transistor equivalents. Use our parametric tool to find replacements by voltage, current, and package. Free and no ads."/>
+<title>Transistor Equivalent Finder Tool - BJT & MOSFET</title>
+<meta name="description" content="Find BJT and MOSFET transistor equivalents by part number or parametric search. Over 6000+ parts. Free with no ads."/>
 <link href="https://transistordatabase.com/transistors-equivalent-finder-tool.html" rel="canonical"/>
 <meta name="robots" content="index, follow"/>
 
-<!-- OG and Twitter Tags -->
+<!-- Open Graph -->
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Transistor Equivalent Finder Tool - BJT & MOSFET"/>
-<meta property="og:description" content="Search over 6,000+ BJT and MOSFET transistor equivalents. Find replacements by voltage, current, and package."/>
+<meta property="og:description" content="Find BJT and MOSFET transistor equivalents by part number or parametric search. Over 6000+ parts. Free with no ads."/>
 <meta property="og:url" content="https://transistordatabase.com/transistors-equivalent-finder-tool.html"/>
 <meta property="og:site_name" content="TransistorDatabase"/>
+
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Transistor Equivalent Finder Tool - BJT & MOSFET"/>
+<meta name="twitter:description" content="Find BJT and MOSFET transistor equivalents by part number or parametric search. Over 6000+ parts. Free with no ads."/>
 
 <!-- JSON-LD: TechArticle -->
 <script type="application/ld+json">
@@ -22,7 +26,7 @@
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "headline": "Transistor Equivalent Finder Tool",
-  "description": "Find BJT and MOSFET transistor equivalents by part number or parametric search. Over 6,000+ parts. Free with no ads.",
+  "description": "Find BJT and MOSFET transistor equivalents by part number or parametric search. Over 6000+ parts. Free with no ads.",
   "url": "https://transistordatabase.com/transistors-equivalent-finder-tool.html",
   "author": { "@type": "Organization", "name": "TransistorDatabase" },
   "publisher": { "@type": "Organization", "name": "TransistorDatabase" },
@@ -30,140 +34,272 @@
 }
 </script>
 
+<!-- JSON-LD: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need to match polarity (NPN vs PNP, N-Channel vs P-Channel)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, absolutely. They control current in opposite ways and cannot be swapped. Always replace an NPN with an NPN, and an N-Channel with an N-Channel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use a transistor with a higher voltage rating (VCEO or Vds)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. This is the maximum voltage the transistor can handle when off. Using a part with a higher rating is safe and often recommended. Never use a lower rating, as it will cause breakdown."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if the current rating (IC or Id) is higher?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That's perfectly fine. A higher current rating means the replacement can handle more load, which gives you a safety margin. Just ensure it's equal to or greater than your original part to avoid overheating."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the physical package and pinout matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, very much. The replacement must physically fit on your circuit board (e.g., TO-92 for through-hole, SOT-23 for surface-mount). You must also verify the pinout matches, or you'll need to modify your layout."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- JSON-LD: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://transistordatabase.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Transistor Equivalent Finder", "item": "https://transistordatabase.com/transistors-equivalent-finder-tool.html" }
+  ]
+}
+</script>
+
 <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background: #f5f5f0; color: #2c2417; line-height: 1.6; }
-    .container { max-width: 1200px; margin: 0 auto; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background: #f5f5f0; color: #2c2417; line-height: 1.6; }
+.container { max-width: 1000px; margin: 0 auto; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
 
-    header { background: #faf9f6; padding: 16px 24px; border-bottom: 1px solid #e5e3db; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-family: ui-monospace, SFMono-Regular, monospace; font-weight: 700; font-size: 18px; color: #2c2417; text-decoration: none; }
+/* ---- Header ---- */
+header { background: #faf9f6; padding: 16px 24px; border-bottom: 1px solid #e5e3db; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: ui-monospace, SFMono-Regular, monospace; font-weight: 700; font-size: 18px; color: #2c2417; text-decoration: none; }
 
-    .breadcrumb { font-size: 13px; color: #55524b; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 4px; padding: 24px 24px 0 24px; }
-    .breadcrumb a { color: #865a2e; text-decoration: underline; white-space: nowrap; }
+/* ---- Breadcrumb ---- */
+.breadcrumb { font-size: 13px; color: #55524b; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 4px; }
+.breadcrumb a { color: #865a2e; text-decoration: underline; white-space: nowrap; }
+.breadcrumb span { white-space: nowrap; }
 
-    .hero { padding: 0 24px 24px 24px; border-bottom: 1px solid #e5e3db; }
-    h1 { font-size: 26px; font-weight: 600; color: #2c2417; margin-bottom: 24px; line-height: 1.2; }
+/* ---- Hero ---- */
+.hero { padding: 24px 24px 20px 24px; background: linear-gradient(135deg, #ffffff 0%, #faf9f6 100%); border-bottom: 1px solid #e5e3db; }
+h1 { font-size: 26px; font-weight: 600; color: #2c2417; margin-bottom: 24px; line-height: 1.2; }
 
-    /* ---- Search Panel ---- */
-    .search-panel { background: #faf9f6; padding: 18px; border-radius: 6px; border: 1px solid #e5e3db; }
-    .part-number-form-row { display: flex; gap: 12px; align-items: flex-end; margin-bottom: 4px; }
-    .form-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
-    .input-group { display: flex; flex-direction: column; }
-    .input-group label { font-size: 11px; font-weight: 600; color: #55524b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.03em; }
-    
-    #label-val1, #label-val2, #label-val3 { text-transform: none !important; }
-    
-    .form-control { padding: 8px 10px; border: 1px solid #d4d2ca; border-radius: 4px; font-size: 14px; color: #2c2417; background: #ffffff; width: 100%; height: 38px; }
-    .form-control:focus { outline: none; border-color: #865a2e; box-shadow: 0 0 0 2px rgba(134,90,46,0.1); }
+/* ---- Search Form Panel ---- */
+.search-panel { background: #faf9f6; padding: 18px; border-radius: 6px; border: 1px solid #e5e3db; }
 
-    .btn { padding: 0 14px; height: 38px; border-radius: 6px; font-size: 14px; font-weight: 600; text-align: center; transition: 0.2s; border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
-    .btn-primary { background: #865a2e; color: white; }
-    .btn-primary:hover { background: #6d4925; }
-    .btn:disabled { background: #ccc; cursor: not-allowed; }
+.part-number-form-row { display: flex; gap: 12px; align-items: flex-end; }
+.part-number-form-row .btn { flex-shrink: 0; }
 
-    .search-divider { display: flex; align-items: center; gap: 12px; margin: 24px 0; }
-    .search-divider-line { flex: 1; height: 1px; background: #e5e3db; }
-    .search-divider-text { font-size: 11px; font-weight: 600; color: #55524b; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
+.form-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
+.input-group { display: flex; flex-direction: column; }
+.input-group label { font-size: 11px; font-weight: 600; color: #55524b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.03em; }
+/* Override to allow technical symbols (ds, mΩ, hFE) to display correctly */
+#label-val1, #label-val2, #label-val3 { 
+    text-transform: none; 
+}
+.form-control { padding: 8px 10px; border: 1px solid #d4d2ca; border-radius: 4px; font-size: 14px; color: #2c2417; background: #ffffff; width: 100%; height: 38px; }
+.form-control:focus { outline: none; border-color: #865a2e; box-shadow: 0 0 0 2px rgba(134,90,46,0.1); }
 
-    /* Thicker search border for Desktop */
-    @media (min-width: 769px) {
-        .search-input { border: 2px solid #b8b3a8 !important; }
+/* Updated Button Padding */
+.btn { padding: 0 14px; height: 38px; border-radius: 6px; font-size: 14px; font-weight: 600; text-align: center; transition: 0.2s; border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.btn-primary { background: #865a2e; color: white; }
+.btn-primary:hover { background: #6d4925; }
+.btn:disabled { background: #ccc; cursor: not-allowed; }
+
+.error-msg { background: #fff4f4; border: 1px solid #ffcccc; color: #cc0000; padding: 12px; border-radius: 4px; margin-top: 12px; font-size: 13px; display: none; }
+
+/* ---- Selector Boxes ---- */
+.selector-container { display: flex; gap: 12px; margin-bottom: 20px; max-width: 600px; }
+
+.selector-card { padding: 14px 20px; border: 2px solid #e5e3db; border-radius: 6px; cursor: pointer; background: #ffffff; transition: all 0.2s ease; position: relative; flex: 1; }
+.selector-card h3 { font-size: 16px; margin-bottom: 2px; color: #2c2417; font-weight: 600; }
+.selector-card p { font-size: 12px; color: #55524b; line-height: 1.4; }
+
+.selector-card.active { border-color: #865a2e; background: #fffcf9; box-shadow: 0 2px 8px rgba(134,90,46,0.1); }
+.selector-card.active::after { content: "✔"; position: absolute; top: 8px; right: 8px; background: #865a2e; color: white; width: 20px; height: 20px; border-radius: 50%; text-align: center; font-size: 12px; line-height: 20px; }
+
+.selector-card.inactive { opacity: 0.6; cursor: pointer; border-color: #e5e3db; background: #f5f5f0; }
+.selector-card.inactive:hover { background: #ffffff; border-color: #d4d2ca; }
+
+/* ---- Content Sections ---- */
+.content-section { padding: 32px 24px; border-bottom: 1px solid #e5e3db; }
+.section-title { font-size: 22px; font-weight: 600; color: #2c2417; margin-bottom: 16px; border-bottom: 2px solid #e5e3db; padding-bottom: 8px; }
+
+.comparison-box { background: #faf9f6; padding: 20px; border: 1px solid #e5e3db; border-radius: 6px; display: grid; grid-template-columns: 1fr; gap: 20px; }
+.comparison-item h3 { font-size: 16px; font-weight: 600; color: #2c2417; margin-bottom: 8px; }
+.comparison-item p { font-size: 14px; color: #55524b; line-height: 1.6; }
+
+.faq-item { margin-bottom: 20px; }
+.faq-question { font-size: 16px; font-weight: 600; color: #2c2417; margin-bottom: 8px; }
+.faq-answer { font-size: 14px; color: #55524b; line-height: 1.6; }
+
+/* ---- Parametric Results (Card Layout) ---- */
+.results-container { padding: 32px 24px; display: none; }
+.results-count { font-weight: 600; font-size: 16px; color: #2c2417; margin-bottom: 16px; display: block; }
+
+/* ---- Manufacturer / Category Badges (global) ---- */
+.mobile-badge {
+    display: inline-block; background: #eef5ff; color: #2c5282; padding: 4px 8px;
+    border-radius: 4px; font-size: 11px; font-weight: 500; border: 1px solid #bee3f8;
+    white-space: nowrap; line-height: 1.3;
+}
+.cat-badge {
+    display: inline-block; background: #f0fdf4; color: #166534; padding: 4px 8px;
+    border-radius: 4px; font-size: 11px; font-weight: 500; border: 1px solid #bbf7d0;
+    white-space: nowrap; line-height: 1.3;
+}
+
+/* ---- Parametric Result Cards ---- */
+.param-cards-list { display: flex; flex-direction: column; gap: 20px; }
+
+.param-card { background: #ffffff; border: 1px solid #d4d2ca; border-radius: 8px; overflow: hidden; }
+
+/* Row 1: Part Number */
+.param-card-header {
+    background: #fffcf9; padding: 12px 14px 10px 14px;
     }
+.param-card-partnum { font-size: 17px; font-weight: 700; color: #865a2e; text-decoration: underline; }
+.param-card-partnum:hover { color: #6d4925; }
+.param-card-partnum-plain { font-size: 17px; font-weight: 700; color: #2c2417; }
 
-    /* ---- Selectors ---- */
-    .selector-container { display: flex; gap: 12px; margin-bottom: 20px; max-width: 600px; }
-    .selector-card { padding: 14px 20px; border: 2px solid #e5e3db; border-radius: 6px; cursor: pointer; background: #ffffff; transition: all 0.2s ease; position: relative; flex: 1; }
-    .selector-card h3 { font-size: 16px; margin-bottom: 2px; color: #2c2417; font-weight: 600; }
-    .selector-card p { font-size: 12px; color: #55524b; line-height: 1.4; }
-    .selector-card.active { border-color: #865a2e; background: #fffcf9; box-shadow: 0 2px 8px rgba(134,90,46,0.1); }
-    .selector-card.active::after { content: "✔"; position: absolute; top: 8px; right: 8px; background: #865a2e; color: white; width: 20px; height: 20px; border-radius: 50%; text-align: center; font-size: 12px; line-height: 20px; }
-    .selector-card.inactive { opacity: 0.6; }
+/* Row 2: Category badge + Mfg badge + PDF */
+.param-card-meta-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 14px; background: #fffcf9;
+    border-bottom: 1px solid #d4d2ca; gap: 8px; min-height: 40px;
+}
+.param-card-meta-left { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
 
-    /* =======================================================
-       UNIVERSAL CARD RESULTS UI
-       ======================================================= */
-    .results-container { padding: 32px 24px; display: none; }
-    .results-count { font-weight: 600; font-size: 16px; color: #2c2417; margin-bottom: 20px; border-bottom: 1px solid #e5e3db; padding-bottom: 12px; }
-    .results-count span { font-weight: 400; color: #55524b; font-size: 14px; margin-left: 8px; }
+/* Row 3+4: 6-cell spec grid */
+.param-card-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.spec-cell {
+    padding: 10px 14px; border-right: 1px solid #e5e3db; border-bottom: 1px solid #e5e3db;
+}
+.spec-cell:nth-child(3n) { border-right: none; }
+.spec-cell:nth-child(4), .spec-cell:nth-child(5), .spec-cell:nth-child(6) { border-bottom: none; }
+.spec-label { display: block; font-size: 11px; font-weight: 600; color: #a35656; text-transform: uppercase; margin-bottom: 2px; letter-spacing: 0.03em; }
+.spec-value { font-size: 14px; color: #2c2417; font-weight: 400; }
 
-    .cards-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+/* PDF Button Style */
+.pdf-btn { display: inline-block; font-size: 11px; font-weight: 550; color: #ffffff !important; background: #865a2e; padding: 4px 8px; border-radius: 4px; text-decoration: none !important; white-space: nowrap; transition: background 0.2s; border: none; line-height: 1.2; }
+.pdf-btn:hover { background: #6d4925; cursor: pointer; }
+
+/* ---- Part Number Results Cards ---- */
+.part-results-screen { padding: 24px; display: none; }
+.part-results-header { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.btn-new-search { background: #6b21a8; color: white; }
+.btn-new-search:hover { background: #581c87; }
+.part-results-count { font-size: 16px; font-weight: 600; color: #2c2417; margin-bottom: 16px;}
+
+/* Group header for name search results (BJT / FET Single / FET Array) */
+.part-group-header {
+    font-size: 16px; font-weight: 700; color: #55524b; text-transform: uppercase;
+    letter-spacing: 0.06em; margin: 28px 0 14px 0; padding-bottom: 6px;
+    border-bottom: 1px solid #e5e3db;
+}
+.part-group-header:first-child { margin-top: 0; }
+
+.part-cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.part-card { border: 1px solid #e5e3db; border-radius: 6px; background: #ffffff; padding: 16px; cursor: pointer; text-decoration: none; display: block; transition: all 0.2s ease; }
+.part-card:hover { border-color: #865a2e; box-shadow: 0 2px 8px rgba(134,90,46,0.1); background: #fffcf9; }
+.part-card-name { font-size: 16px; font-weight: 700; color: #2c2417; margin-bottom: 4px; word-break: break-all; }
+.part-card-meta { font-size: 13px; color: #55524b; line-height: 1.5; }
+.part-card-cta { font-size: 12px; color: #865a2e; font-weight: 600; margin-top: 10px; }
+
+.part-no-results { background: #faf9f6; border: 1px solid #e5e3db; border-radius: 6px; padding: 24px; text-align: center; font-size: 14px; color: #55524b; line-height: 1.7; }
+.part-no-results strong { color: #2c2417; }
+
+/* ---- Footer ---- */
+footer { padding: 32px 24px; background: #2c2417; color: #d4d2ca; text-align: center; font-size: 13px; }
+footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
+
+/* =======================================================
+   MOBILE OPTIMIZATION
+   ======================================================= */
+@media (max-width: 768px) {
+    h1 { font-size: 22px; line-height: 1.4; margin-bottom: 20px; }
+    .selector-container { flex-direction: column; max-width: 100%; }
+    .comparison-box { grid-template-columns: 1fr; gap: 16px; }
     
-    .res-card { border: 1px solid #d4d2ca; border-radius: 8px; background: #ffffff; overflow: hidden; transition: box-shadow 0.2s; }
-    .res-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-
-    .card-row-1 { background: #fffcf9; padding: 12px 16px; border-bottom: 1px solid #f0eee8; }
-    .card-part-link { font-size: 18px; font-weight: 700; color: #865a2e; text-decoration: underline; }
-
-    .card-row-2 { padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f0eee8; }
-    .badge-group { display: flex; gap: 8px; align-items: center; }
-    .mobile-badge { display: inline-block; background: #eef5ff; color: #2c5282; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; border: 1px solid #bee3f8; text-transform: uppercase; }
-    .cat-badge { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; } /* For Single/Array tag */
-
-    /* The 6-Cell Grid */
-    .card-specs-grid { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0; }
-    .spec-cell { padding: 12px 16px; border-right: 1px solid #f0eee8; border-bottom: 1px solid #f0eee8; display: flex; flex-direction: column; }
-    .spec-cell:nth-child(3n) { border-right: none; }
-    .spec-cell:nth-child(n+4) { border-bottom: none; }
+    .part-number-form-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+    /* FIXED: Mobile Button stretches properly now */
+    .part-number-form-row .input-group { width: 100%; max-width: none !important; }
+    .part-number-form-row .btn { width: auto; align-self: flex-start; }
     
-    .spec-label { font-size: 10px; color: #a35656; text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
-    .spec-value { font-size: 14px; color: #2c2417; font-weight: 500; }
+    .form-row { grid-template-columns: 1fr; }
 
-    /* Part Search Headers */
-    .search-group-title { font-size: 18px; font-weight: 700; color: #2c2417; margin: 32px 0 16px 0; padding-left: 4px; border-left: 4px solid #865a2e; }
+    .part-cards-grid { grid-template-columns: repeat(2, 1fr); }
 
-    /* ---- Content & FAQ ---- */
-    .content-section { padding: 32px 24px; border-bottom: 1px solid #e5e3db; }
-    .section-title { font-size: 22px; font-weight: 600; color: #2c2417; margin-bottom: 16px; border-bottom: 2px solid #e5e3db; padding-bottom: 8px; }
-    .comparison-box { background: #faf9f6; padding: 20px; border: 1px solid #e5e3db; border-radius: 6px; }
-    
-    footer { padding: 32px 24px; background: #2c2417; color: #d4d2ca; text-align: center; font-size: 13px; }
-    footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
-
-    @media (max-width: 768px) {
-        .form-row { grid-template-columns: 1fr; }
-        .selector-container { flex-direction: column; }
-        .part-number-form-row { flex-direction: column; align-items: stretch; }
-        .part-number-form-row .input-group { max-width: none !important; }
-        .part-number-form-row .btn { width: auto; align-self: flex-start; }
-        
-        .results-count span { display: block; margin-left: 0; margin-top: 4px; font-size: 13px; }
-        .card-specs-grid { grid-template-columns: repeat(2, 1fr); }
-        .spec-cell:nth-child(2n) { border-right: none; }
-        .spec-cell:nth-child(odd) { border-right: 1px solid #f0eee8; }
-        .spec-cell:nth-child(3) { border-bottom: 1px solid #f0eee8; }
-        .spec-cell:nth-child(n+5) { border-bottom: none; }
-    }
+    /* Parametric cards on mobile - tighten padding */
+    .spec-cell { padding: 8px 10px; }
+    .spec-value { font-size: 13px; }
+    .param-card-header { padding: 10px 12px 8px 12px; }
+    .param-card-meta-row { padding: 7px 12px; }
+    .param-card-partnum, .param-card-partnum-plain { font-size: 16px; }
+}
 </style>
 <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
 </head>
 <body>
 
 <div class="container">
-    <header><a class="logo" href="index.html">TransistorDatabase</a></header>
+    <header>
+        <a class="logo" href="index.html">TransistorDatabase</a>
+    </header>
 
     <main>
         <section class="hero" id="search-area">
-            <nav class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Transistor Equivalent Finder</span></nav>
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a> <span>›</span>
+                <span>Transistor Equivalent Finder</span>
+            </nav>
+
             <h1>Transistor Equivalent Finder Tool</h1>
 
             <div class="search-panel">
-                <!-- PART NUMBER SEARCH -->
+                
+                <!-- PART NUMBER SEARCH (Searches all 3 datasets via Worker) -->
                 <div class="part-number-form-row">
-                    <div class="input-group" style="width: 100%; max-width: 320px;">
+                  <div class="input-group" style="width: 100%; max-width: 320px;">
                         <label for="part-number-input">Search by part number</label>
-                        <input class="form-control" id="part-number-input" type="text" placeholder="e.g. BC547 or IRFZ44N" maxlength="30" autocomplete="off"/>
+                        <input class="form-control" id="part-number-input" type="text" placeholder="e.g. BC547 or IRFZ44N" maxlength="30" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false"/>
                     </div>
-                    <button class="btn btn-primary" id="btn-part-search" onclick="performPartSearch()">Find Equivalents</button>
+                    <button class="btn btn-primary" id="btn-part-search" onclick="performPartSearch()">
+                        Find Equivalents
+                    </button>
                 </div>
                 <div class="error-msg" id="part-error-msg"></div>
 
+                <!-- DIVIDER -->
                 <div class="search-divider">
                     <div class="search-divider-line"></div>
                     <span class="search-divider-text">Or search by specifications</span>
                     <div class="search-divider-line"></div>
                 </div>
 
-                <!-- SELECTORS -->
+                <!-- SELECTOR BOXES -->
                 <div class="selector-container">
                     <div class="selector-card active" id="btn-fet" onclick="setDeviceFamily('fet')">
                         <h3>FET / MOSFET</h3>
@@ -171,11 +307,11 @@
                     </div>
                     <div class="selector-card inactive" id="btn-bjt" onclick="setDeviceFamily('bjt')">
                         <h3>BJT Transistor</h3>
-                        <p>NPN / PNP bipolar transistors</p>
+                        <p>NPN / PNP bipolar junction transistors</p>
                     </div>
                 </div>
 
-                <!-- PARAMETRIC INPUTS -->
+                <!-- PARAMETRIC SEARCH INPUTS (Dynamically updated via JS) -->
                 <div class="form-row">
                     <div class="input-group">
                         <label for="input-type">Type</label>
@@ -186,22 +322,22 @@
                         <select class="form-control" id="input-package"><option value="">Any</option></select>
                     </div>
                     <div class="input-group">
-                        <label id="label-cat" for="input-cat">FET Category</label>
-                        <select class="form-control" id="input-cat"><option value="">Any</option></select>
+                        <label id="label-badge" for="input-badge">FET Category</label>
+                        <select class="form-control" id="input-badge"><option value="">Any</option></select>
                     </div>
                 </div>
                 
                 <div class="form-row">
                     <div class="input-group">
-                        <label id="label-val1" for="input-val1">MIN V<sub>DS</sub> (V)</label>
+                        <label id="label-val1" for="input-val1">Min V<sub>DS</sub> (V)</label>
                         <input class="form-control" id="input-val1" placeholder="e.g. 30" type="number"/>
                     </div>
                     <div class="input-group">
-                        <label id="label-val2" for="input-val2">MIN I<sub>D</sub> (A)</label>
+                        <label id="label-val2" for="input-val2">Min I<sub>D</sub> (A)</label>
                         <input class="form-control" id="input-val2" placeholder="e.g. 5" step="0.01" type="number"/>
                     </div>
                     <div class="input-group">
-                        <label id="label-val3" for="input-val3">MAX R<sub>DS(ON)</sub> (m&Omega;)</label>
+                        <label id="label-val3" for="input-val3">Max R<sub>DS(ON)</sub> (m&Omega;)</label>
                         <input class="form-control" id="input-val3" placeholder="e.g. 50" type="number"/>
                     </div>
                 </div>
@@ -211,40 +347,63 @@
             </div>
         </section>
 
-        <!-- RESULTS SECTION -->
+        <!-- =====================================================
+             PARAMETRIC RESULTS — Card layout (DT & Mobile)
+             ===================================================== -->
         <div class="results-container" id="results-section">
             <div class="results-count" id="results-count-text">Results</div>
-            <div class="cards-grid" id="results-cards-container"></div>
+            <div class="param-cards-list" id="results-cards-container"></div>
         </div>
 
-        <!-- PART NUMBER RESULTS (Replaces Search Area) -->
-        <div class="part-results-screen" id="part-results-screen" style="padding: 32px 24px;">
+        <!-- =====================================================
+             PART NUMBER RESULTS CARDS
+             ===================================================== -->
+        <div class="part-results-screen" id="part-results-screen">
             <div class="part-results-header">
                 <button class="btn btn-new-search" onclick="resetPartSearch()">← New Search</button>
-                <div class="results-count" id="part-results-count" style="border:none; margin:0; padding:0;"></div>
+                <span class="part-results-count" id="part-results-count"></span>
             </div>
-            <div id="part-grouped-results"></div>
+            <div id="part-cards-container"></div>
         </div>
 
-        <!-- Static Info -->
+        <!-- When to Choose -->
         <section class="content-section">
             <h2 class="section-title">When to Choose BJT vs FET</h2>
             <div class="comparison-box">
                 <div class="comparison-item">
                     <h3>BJT (Bipolar Junction Transistor)</h3>
-                    <p>Best for audio amplification, radio circuits, LED drivers, and low-frequency switching. Current-controlled with high gain.</p>
+                    <p>Best for audio amplification, radio circuits, Arduino projects, LED drivers, and low-frequency switching. Current-controlled with high gain.</p>
                 </div>
-                <div style="margin-top:20px;" class="comparison-item">
+                <div class="comparison-item">
                     <h3>FET / MOSFET</h3>
-                    <p>Best for high-speed switching, motor control, power supplies, and high-frequency circuits. Voltage-controlled with low gate draw.</p>
+                    <p>Best for high-speed switching, motor control, power supplies, DC-DC converters, and high-frequency circuits. Voltage-controlled with low gate power draw.</p>
                 </div>
             </div>
         </section>
 
+        <!-- FAQ -->
         <section class="content-section">
             <h2 class="section-title">Frequently Asked Questions</h2>
-            <div class="faq-item"><h3 class="faq-question">1. Do I need to match polarity?</h3><p class="faq-answer">Yes. NPN must replace NPN, and N-Channel must replace N-Channel. They are not interchangeable.</p></div>
-            <div class="faq-item"><h3 class="faq-question">2. Can I use a higher voltage rating?</h3><p class="faq-answer">Yes. Using a part with a higher Vds or Vceo is safer and often recommended. Never use a lower rating.</p></div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">1. Do I need to match polarity (NPN vs PNP, N-Channel vs P-Channel)?</h3>
+                <p class="faq-answer">Yes, absolutely. They control current in opposite ways and cannot be swapped. Always replace an NPN with an NPN, and an N-Channel with an N-Channel.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">2. Can I use a transistor with a higher voltage rating (VCEO or Vds)?</h3>
+                <p class="faq-answer">Yes. This is the maximum voltage the transistor can handle when off. A higher rating is safe and often recommended - never use a lower rating, as it will cause breakdown.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">3. What if the current rating (IC or Id) is higher?</h3>
+                <p class="faq-answer">That's perfectly fine. A higher current rating gives you a safety margin. Just ensure it's equal to or greater than your original part - never lower, as it risks overheating and failure.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 class="faq-question">4. Does the physical package and pinout matter?</h3>
+                <p class="faq-answer">Yes, very much. The replacement must physically fit your board (e.g., TO-92 for through-hole, SOT-23 for surface-mount). Verify the pinout (Gate/Drain/Source order) or you'll need to modify your layout.</p>
+            </div>
         </section>
     </main>
 
@@ -256,207 +415,527 @@
 
 <script>
     const API_URL = "https://transistor-search-api.arunandfibo.workers.dev/search";
-    let bjtOpts = {}, fetOpts = {}, typeMap = {}, currentFamily = 'fet';
+    
+    let bjtDropdowns = {};
+    let fetDropdowns = {};
+    let typePackageMapping = {};
+    let currentFamily = 'fet'; // Default active
+    let currentFetCategory = ''; // Tracks the FET category used in the last parametric search
 
     document.addEventListener("DOMContentLoaded", async () => {
         try {
-            const [bRes, fRes, mRes] = await Promise.all([
+            // Fetch all options in parallel for speed
+            const [bjtRes, fetRes, mappingRes] = await Promise.all([
                 fetch('bjt-dropdown-options.json'),
-                fetch('fet_dropdown_options.json'),
+                fetch('fet_dropdown_options_v2.json'), // UPDATED to v2
                 fetch('bjt-type-package-mapping.json')
             ]);
-            bjtOpts = await bRes.json(); fetOpts = await fRes.json(); typeMap = await mRes.json();
+            
+            bjtDropdowns = await bjtRes.json();
+            fetDropdowns = await fetRes.json();
+            typePackageMapping = await mappingRes.json();
+
+            // Initialize UI to FET
             setDeviceFamily('fet');
             document.getElementById('input-type').addEventListener('change', handleTypeChange);
-        } catch (e) { showError("Error loading database. Please refresh."); }
 
+        } catch (error) {
+            console.error("Failed to load JSON options:", error);
+            showError("Error loading database options. Please refresh.");
+        }
+
+        // Trigger search on Enter key for Part Number
         const partInput = document.getElementById('part-number-input');
-        partInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') performPartSearch(); });
+        partInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') performPartSearch();
+        });
     });
 
+    // -----------------------------------------
+    // UI TOGGLE & SMART DROPDOWN LOGIC
+    // -----------------------------------------
     function setDeviceFamily(family) {
         currentFamily = family;
-        document.getElementById('btn-fet').className = family === 'fet' ? 'selector-card active' : 'selector-card inactive';
-        document.getElementById('btn-bjt').className = family === 'bjt' ? 'selector-card active' : 'selector-card inactive';
+        const btnBjt = document.getElementById('btn-bjt');
+        const btnFet = document.getElementById('btn-fet');
         
-        // Reset results
+        const lblBadge = document.getElementById('label-badge');
+        const lblVal1 = document.getElementById('label-val1');
+        const lblVal2 = document.getElementById('label-val2');
+        const lblVal3 = document.getElementById('label-val3');
+        
+        const inputVal1 = document.getElementById('input-val1');
+        const inputVal2 = document.getElementById('input-val2');
+        const inputVal3 = document.getElementById('input-val3');
+        const badgeSelect = document.getElementById('input-badge');
+        
+        inputVal1.value = ""; inputVal2.value = ""; inputVal3.value = "";
         document.getElementById('results-section').style.display = 'none';
+        document.getElementById('results-cards-container').innerHTML = '';
         document.getElementById('part-results-screen').style.display = 'none';
         document.getElementById('search-area').style.display = 'block';
 
-        const lblCat = document.getElementById('label-cat');
-        const lbl1 = document.getElementById('label-val1');
-        const lbl2 = document.getElementById('label-val2');
-        const lbl3 = document.getElementById('label-val3');
-        const in1 = document.getElementById('input-val1');
-        const in2 = document.getElementById('input-val2');
-        const in3 = document.getElementById('input-val3');
-
-        in1.value = ""; in2.value = ""; in3.value = "";
-
         if (family === 'fet') {
-            lblCat.innerText = "FET Category";
-            lbl1.innerHTML = "MIN V<sub>DS</sub> (V)"; in1.placeholder = "e.g. 30";
-            lbl2.innerHTML = "MIN I<sub>D</sub> (A)"; in2.placeholder = "e.g. 5";
-            lbl3.innerHTML = "MAX R<sub>DS(ON)</sub> (m&Omega;)"; in3.placeholder = "e.g. 50";
-            populateSelect('input-type', fetOpts.types);
-            populateSelect('input-package', fetOpts.packages);
-            populateSelect('input-cat', ["Single", "Array"]);
+            btnFet.className = 'selector-card active';
+            btnBjt.className = 'selector-card inactive';
+            
+            lblBadge.innerHTML = 'FET Category';
+            populateSelect('input-badge', fetDropdowns.categories || []);
+            
+            // Add event listener to the Category dropdown so it updates Types/Packages when changed
+            badgeSelect.removeEventListener('change', handleCategoryChange); // Remove old listener just in case
+            badgeSelect.addEventListener('change', handleCategoryChange);
+
+            lblVal1.innerHTML = 'MIN V<sub>DS</sub> (V)';
+            inputVal1.placeholder = 'e.g. 30';
+            
+            lblVal2.innerHTML = 'MIN I<sub>D</sub> (A)';
+            inputVal2.placeholder = 'e.g. 5';
+            
+            lblVal3.innerHTML = 'MAX R<sub>DS(ON)</sub> (m&Omega;)';
+            inputVal3.placeholder = 'e.g. 50';
+            
+            // Trigger the initial population based on "Any" category
+            handleCategoryChange();
+            
         } else {
-            lblCat.innerText = "Application";
-            lbl1.innerHTML = "MIN V<sub>CEO</sub> (V)"; in1.placeholder = "e.g. 50";
-            lbl2.innerHTML = "MIN I<sub>C</sub> (A)"; in2.placeholder = "e.g. 0.15";
-            lbl3.innerHTML = "MIN h<sub>FE</sub>"; in3.placeholder = "e.g. 100";
-            populateSelect('input-type', bjtOpts.types);
-            populateSelect('input-package', bjtOpts.packages);
-            populateSelect('input-cat', bjtOpts.badges);
+            btnBjt.className = 'selector-card active';
+            btnFet.className = 'selector-card inactive';
+            
+            lblBadge.innerHTML = 'Application';
+            lblVal1.innerHTML = 'MIN V<sub>CEO</sub> (V)';
+            inputVal1.placeholder = 'e.g. 50';
+            
+            lblVal2.innerHTML = 'MIN I<sub>C</sub> (A)';
+            inputVal2.placeholder = 'e.g. 0.15';
+            
+            lblVal3.innerHTML = 'MIN h<sub>FE</sub>';
+            inputVal3.placeholder = 'e.g. 100';
+            
+            badgeSelect.removeEventListener('change', handleCategoryChange); // BJTs don't need this listener
+            
+            populateSelect('input-type', bjtDropdowns.types);
+            populateSelect('input-package', bjtDropdowns.packages);
+            populateSelect('input-badge', bjtDropdowns.badges);
         }
     }
 
-    function populateSelect(id, opts) {
-        const el = document.getElementById(id);
-        el.innerHTML = '<option value="">Any</option>';
-        if (!opts) return;
-        opts.forEach(o => { const opt = document.createElement('option'); opt.value = o; opt.text = o; el.add(opt); });
+    function handleCategoryChange() {
+        if (currentFamily !== 'fet') return;
+        
+        const catVal = document.getElementById('input-badge').value; // 'single', 'array', or '' (Any)
+        const typeSelect = document.getElementById('input-type');
+        const pkgSelect = document.getElementById('input-package');
+        
+        let availableTypes = new Set();
+        let availablePkgs = new Set();
+        
+        const map = fetDropdowns.type_package_map;
+        if (!map) return;
+
+        // If 'Any', combine types and packages from both single and array
+        const categoriesToSearch = catVal ? [catVal] : ['single', 'array'];
+        
+        categoriesToSearch.forEach(c => {
+            if (map[c]) {
+                Object.keys(map[c]).forEach(t => {
+                    availableTypes.add(t);
+                    map[c][t].forEach(p => availablePkgs.add(p));
+                });
+            }
+        });
+
+        // Repopulate Type dropdown
+        populateSelect('input-type', [''].concat(Array.from(availableTypes).sort()));
+        // Repopulate Package dropdown
+        populateSelect('input-package', [''].concat(Array.from(availablePkgs).sort()));
     }
 
     function handleTypeChange() {
-        const type = document.getElementById('input-type').value;
-        const pkg = document.getElementById('input-package');
-        pkg.value = "";
+        const selectedType = document.getElementById('input-type').value;
+        
         if (currentFamily === 'bjt') {
-            populateSelect('input-package', (type && typeMap[type]) ? typeMap[type] : bjtOpts.packages);
+            if (selectedType && typePackageMapping[selectedType]) {
+                populateSelect('input-package', [''].concat(typePackageMapping[selectedType]));
+            } else {
+                populateSelect('input-package', bjtDropdowns.packages);
+            }
         } else {
-            populateSelect('input-package', fetOpts.packages);
+            // FET Logic: Filter packages based on selected Type AND Category
+            const catVal = document.getElementById('input-badge').value;
+            const map = fetDropdowns.type_package_map;
+            if (!map) return;
+            
+            if (!selectedType) {
+                // If type is cleared, reset packages based on category
+                handleCategoryChange();
+                return;
+            }
+
+            let availablePkgs = new Set();
+            const categoriesToSearch = catVal ? [catVal] : ['single', 'array'];
+            
+            categoriesToSearch.forEach(c => {
+                if (map[c] && map[c][selectedType]) {
+                    map[c][selectedType].forEach(p => availablePkgs.add(p));
+                }
+            });
+            
+            populateSelect('input-package', [''].concat(Array.from(availablePkgs).sort()));
         }
     }
 
+    // Helper to populate <select> elements smoothly
+    function populateSelect(elementId, options) {
+        const select = document.getElementById(elementId);
+        select.innerHTML = '<option value="">Any</option>'; // Always start with "Any"
+        if (!options) return;
+        
+        options.forEach(opt => {
+            // Skip empty string since we already added "Any"
+            if (opt === '') return; 
+            
+            const el = document.createElement('option');
+            if (typeof opt === 'object' && opt !== null) {
+                el.value = opt.value;
+                el.textContent = opt.label;
+            } else {
+                el.value = opt;
+                el.textContent = opt;
+            }
+            select.appendChild(el);
+        });
+    }
+
+    // -----------------------------------------
+    // PARAMETRIC SEARCH
+    // -----------------------------------------
     async function performSearch() {
         const btn = document.getElementById('btn-search');
-        const err = document.getElementById('error-msg');
-        const container = document.getElementById('results-section');
-        
-        err.style.display = 'none'; container.style.display = 'none';
-        btn.disabled = true; btn.innerText = "Searching...";
+        const errorMsg = document.getElementById('error-msg');
+        const resultsSection = document.getElementById('results-section');
+        const container = document.getElementById('results-cards-container');
 
-        const payload = {
+        errorMsg.style.display = 'none';
+        resultsSection.style.display = 'none';
+        container.innerHTML = '';
+        btn.disabled = true;
+        btn.innerText = "Searching...";
+
+        // Build Payload
+        // For FET: send 'category' (single/array/empty) — routes the worker to the right dataset.
+        // For BJT: send 'badge' — filters by application tag.
+        const criteria = {
             device_family: currentFamily,
             type: document.getElementById('input-type').value,
             package: document.getElementById('input-package').value,
-            badge: currentFamily === 'bjt' ? document.getElementById('input-cat').value : '',
-            category: currentFamily === 'fet' ? document.getElementById('input-cat').value.toLowerCase() : ''
         };
 
-        const v1 = document.getElementById('input-val1').value;
-        const v2 = document.getElementById('input-val2').value;
-        const v3 = document.getElementById('input-val3').value;
+        if (currentFamily === 'fet') {
+            criteria.category = document.getElementById('input-badge').value; // 'single', 'array', or ''
+            currentFetCategory = criteria.category;
+        } else {
+            criteria.badge = document.getElementById('input-badge').value;
+            currentFetCategory = '';
+        }
 
-        if (currentFamily === 'fet') { payload.min_vds = v1; payload.min_id = v2; payload.max_rds = v3; }
-        else { payload.min_vceo = v1; payload.min_ic = v2; payload.min_hfe = v3; }
+        const val1 = document.getElementById('input-val1').value;
+        const val2 = document.getElementById('input-val2').value;
+        const val3 = document.getElementById('input-val3').value;
 
-        try {
-            const res = await fetch(API_URL, { method: 'POST', body: JSON.stringify(payload) });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.error);
-            
-            const countText = document.getElementById('results-count-text');
-            const famText = currentFamily === 'fet' ? 'FET/MOSFET' : 'BJT';
-            let msg = `Found ${data.total_matches} ${famText} parts`;
-            if (data.total_matches > 50) msg += ` <span>(Showing top 50)</span>`;
-            countText.innerHTML = msg;
-            
-            renderCards(data.results, 'results-cards-container', currentFamily);
-            container.style.display = 'block';
-        } catch (e) { showError(e.message); }
-        finally { btn.disabled = false; btn.innerText = "Find Equivalents"; }
-    }
-
-    async function performPartSearch() {
-        const query = document.getElementById('part-number-input').value.trim();
-        if (!query) return;
-        const btn = document.getElementById('btn-part-search');
-        const err = document.getElementById('part-error-msg');
-        err.style.display = 'none'; document.getElementById('results-section').style.display = 'none';
-        btn.disabled = true; btn.innerText = "Searching...";
+        if (currentFamily === 'fet') {
+            criteria.min_vds = val1;
+            criteria.min_id = val2;
+            criteria.max_rds = val3;
+            if (!criteria.type && !criteria.package && !criteria.category && !criteria.min_vds && !criteria.min_id && !criteria.max_rds) {
+                showError("Please enter at least one requirement.");
+                resetBtn(); return;
+            }
+        } else {
+            criteria.min_vceo = val1;
+            criteria.min_ic = val2;
+            criteria.min_hfe = val3;
+            if (!criteria.type && !criteria.package && !criteria.badge && !criteria.min_vceo && !criteria.min_ic && !criteria.min_hfe) {
+                showError("Please enter at least one requirement.");
+                resetBtn(); return;
+            }
+        }
 
         try {
-            const res = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ part_number: query }) });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.error);
-
-            document.getElementById('search-area').style.display = 'none';
-            document.getElementById('part-results-screen').style.display = 'block';
-            
-            const countEl = document.getElementById('part-results-count');
-            const total = data.counts.bjt + data.counts.single_fet + data.counts.array_fet;
-            countEl.innerHTML = `Found ${total} matching parts`;
-
-            const groupContainer = document.getElementById('part-grouped-results');
-            groupContainer.innerHTML = '';
-
-            const groups = [
-                { id: 'bjt', label: 'BJT Transistors', data: data.results.bjt, count: data.counts.bjt },
-                { id: 'single', label: 'Single FET/MOSFETs', data: data.results.single_fet, count: data.counts.single_fet },
-                { id: 'array', label: 'FET Array / Duals', data: data.results.array_fet, count: data.counts.array_fet }
-            ];
-
-            groups.forEach(g => {
-                if (g.count > 0) {
-                    const section = document.createElement('div');
-                    section.innerHTML = `<div class="search-group-title">${g.label} (${g.count})</div><div class="cards-grid" id="grid-${g.id}"></div>`;
-                    groupContainer.appendChild(section);
-                    renderCards(g.data, `grid-${g.id}`, g.id === 'bjt' ? 'bjt' : 'fet');
-                }
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(criteria)
             });
-        } catch (e) { err.innerText = e.message; err.style.display = 'block'; }
-        finally { btn.disabled = false; btn.innerText = "Find Equivalents"; }
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error || "Search failed");
+            renderParamCards(data);
+        } catch (err) {
+            showError("Error: " + err.message);
+        } finally {
+            resetBtn();
+        }
     }
 
-    function renderCards(parts, containerId, family) {
-        const container = document.getElementById(containerId);
+    // -----------------------------------------
+    // PARAMETRIC RESULTS — Card Renderer
+    // Replaces the old table renderer.
+    // Same card layout as the existing mobile view,
+    // but built as real divs so it looks right on DT too.
+    // -----------------------------------------
+    function renderParamCards(data) {
+        const resultsSection = document.getElementById('results-section');
+        const countText = document.getElementById('results-count-text');
+        const container = document.getElementById('results-cards-container');
+
+        const fam = data.device_family || currentFamily;
+        const familyText = fam === 'fet' ? 'FET/MOSFET' : 'BJT';
+        
+        countText.innerText = `Found ${data.total_matches} ${familyText} parts`;
+        if (data.total_matches > 50) countText.innerText += ` (Showing top 50)`;
+
         container.innerHTML = '';
-        parts.forEach(p => {
-            const mfg = p.badge && p.badge !== '-' ? (p.badge.length > 15 ? p.badge.substring(0, 13) + '...' : p.badge) : '-';
-            const pdf = (p.datasheet && p.datasheet !== '#' && p.datasheet !== '-') ? `<a href="${p.datasheet}" target="_blank" class="pdf-btn">📄 PDF</a>` : '';
-            const catTag = p.category ? `<span class="mobile-badge cat-badge">${p.category}</span>` : '';
-            
-            let specs = [];
-            if (family === 'fet') {
-                specs = [
-                    { l: 'Type', v: p.type }, { l: 'Package', v: p.package }, { l: 'Vds', v: p.vds_text },
-                    { l: 'Id', v: p.id_text }, { l: 'Rds(on)', v: p.rds_text }, { l: 'Vgs(th)', v: p.vgs_text }
+
+        if (!data.results || data.results.length === 0) {
+            showError("No parts found matching your criteria.");
+            return;
+        }
+
+        data.results.forEach(part => {
+            const card = document.createElement('div');
+            card.className = 'param-card';
+
+            // --- Row 1: Part Number ---
+            const partLink = part.url 
+                ? `<a href="${part.url}" target="_blank" class="param-card-partnum">${escapeHtml(part.part)}</a>`
+                : `<span class="param-card-partnum-plain">${escapeHtml(part.part)}</span>`;
+
+            // --- Row 2: Category badge + Mfg badge + PDF ---
+            // FET category: use what was searched, or fall back to part.category if the field exists
+            let catBadgeHtml = '';
+            if (fam === 'fet') {
+            let catRaw = '';
+            if (currentFetCategory) {
+            // User filtered by a specific category — all results are from that one dataset
+            catRaw = currentFetCategory;
+            } else {
+            // 'Any' searched — array parts have a category field, single parts don't
+            catRaw = part.category ? part.category : 'single';
+            }
+            const catLabel = catRaw === 'single' ? 'Single FET' : catRaw === 'array' ? 'FET Array' : escapeHtml(catRaw);
+            catBadgeHtml = `<span class="cat-badge">${catLabel}</span>`;
+            }
+
+            const mfgName = part.badge && part.badge !== '-' ? part.badge : '';
+            const mfgBadgeHtml = mfgName ? `<span class="mobile-badge">${escapeHtml(mfgName)}</span>` : '';
+
+            const pdfHtml = part.datasheet && part.datasheet !== '#' && part.datasheet !== '-'
+                ? `<a href="${part.datasheet}" target="_blank" class="pdf-btn">&#128196; PDF</a>` : '';
+
+            // Only render meta row if there's something to show
+            const hasMetaContent = catBadgeHtml || mfgBadgeHtml || pdfHtml;
+            const metaRowHtml = hasMetaContent ? `
+                <div class="param-card-meta-row">
+                    <div class="param-card-meta-left">${catBadgeHtml}${mfgBadgeHtml}</div>
+                    ${pdfHtml}
+                </div>` : '';
+
+            // --- Spec Grid: 6 cells (3 cols × 2 rows) ---
+            // On DT we have room, so Rds(on) dual values are shown inline with ' / ' — no line break.
+            let cells = [];
+            if (fam === 'fet') {
+                const rdsVal = part.rds_text && part.rds_text !== '-'
+                    ? part.rds_text.replace(/;/g, ' / ')
+                    : '-';
+                cells = [
+                    { label: 'Type',                         value: part.type        || '-' },
+                    { label: 'Package',                      value: part.package     || '-' },
+                    { label: 'V<sub>DS</sub>',               value: part.vds_text    || '-' },
+                    { label: 'I<sub>D</sub>',                value: part.id_text     || '-' },
+                    { label: 'R<sub>DS(ON)</sub>',           value: rdsVal               },
+                    { label: 'V<sub>GS(TH)</sub>',           value: part.vgs_text    || '-' },
                 ];
             } else {
-                specs = [
-                    { l: 'Type', v: p.type }, { l: 'Package', v: p.package }, { l: 'Vceo', v: p.vceo + 'V' },
-                    { l: 'Ic', v: p.ic + 'A' }, { l: 'hFE', v: p.hfe }, { l: 'Pd', v: p.pd + 'W' }
+                cells = [
+                    { label: 'Type',                         value: part.type                        || '-' },
+                    { label: 'Package',                      value: part.package                     || '-' },
+                    { label: 'V<sub>CEO</sub>',              value: part.vceo ? part.vceo + 'V' : '-'       },
+                    { label: 'I<sub>C</sub>',                value: part.ic   ? part.ic   + 'A' : '-'       },
+                    { label: 'h<sub>FE</sub>',               value: part.hfe                         || '-' },
+                    { label: 'P<sub>d</sub>',                value: part.pd   ? part.pd   + 'W' : '-'       },
                 ];
             }
 
-            const card = document.createElement('div');
-            card.className = 'res-card';
+            const gridHtml = cells.map(c =>
+                `<div class="spec-cell"><span class="spec-label">${c.label}</span><span class="spec-value">${c.value}</span></div>`
+            ).join('');
+
             card.innerHTML = `
-                <div class="card-row-1"><a href="${p.url}" target="_blank" class="card-part-link">${p.part}</a></div>
-                <div class="card-row-2">
-                    <div class="badge-group">${catTag} <span class="mobile-badge">${mfg}</span></div>
-                    ${pdf}
-                </div>
-                <div class="card-specs-grid">
-                    ${specs.map(s => `<div class="spec-cell"><span class="spec-label">${s.l}</span><span class="spec-value">${s.v || '-'}</span></div>`).join('')}
-                </div>
+                <div class="param-card-header">${partLink}</div>
+                ${metaRowHtml}
+                <div class="param-card-grid">${gridHtml}</div>
             `;
+
             container.appendChild(card);
+        });
+
+        resultsSection.style.display = 'block';
+    }
+
+    function showError(msg) {
+        const el = document.getElementById('error-msg');
+        el.innerText = msg;
+        el.style.display = 'block';
+    }
+
+    function resetBtn() {
+        const btn = document.getElementById('btn-search');
+        btn.disabled = false;
+        btn.innerText = "Find Equivalents";
+    }
+
+    // -----------------------------------------
+    // PART NUMBER SEARCH (Searches all 3 datasets)
+    // -----------------------------------------
+    async function performPartSearch() {
+        const input = document.getElementById('part-number-input');
+        const btn = document.getElementById('btn-part-search');
+        const errorEl = document.getElementById('part-error-msg');
+        const query = input.value.trim();
+
+        if (!query) return;
+
+        errorEl.style.display = 'none';
+        document.getElementById('results-section').style.display = 'none'; // Hide any parametric results
+        btn.disabled = true;
+        btn.innerText = "Searching...";
+
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ part_number: query })
+            });
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error || "Search failed");
+            renderPartResults(data, query);
+        } catch (err) {
+            errorEl.innerText = "Error: " + err.message;
+            errorEl.style.display = 'block';
+        } finally {
+            btn.disabled = false;
+            btn.innerText = "Find Equivalents";
+        }
+    }
+
+    // -----------------------------------------
+    // PART NUMBER RESULTS RENDERER
+    // Worker now returns grouped results:
+    //   data.results = { bjt: [...], single_fet: [...], array_fet: [...] }
+    //   data.counts  = { bjt: N, single_fet: N, array_fet: N }
+    // -----------------------------------------
+    function renderPartResults(data, query) {
+        const searchArea = document.getElementById('search-area');
+        const resultsScreen = document.getElementById('part-results-screen');
+        const countEl = document.getElementById('part-results-count');
+        const container = document.getElementById('part-cards-container');
+
+        searchArea.style.display = 'none';
+        resultsScreen.style.display = 'block';
+
+        // Compute total across all three groups
+        const counts = data.counts || { bjt: 0, single_fet: 0, array_fet: 0 };
+        const total = (counts.bjt || 0) + (counts.single_fet || 0) + (counts.array_fet || 0);
+
+        if (total === 0) {
+            countEl.innerHTML = '';
+            container.innerHTML = `
+                <div class="part-no-results">
+                    No parts found matching <strong>"${escapeHtml(query)}"</strong>.<br>
+                    Please check the part number or try the parametric search after clicking New Search.
+                </div>`;
+            return;
+        }
+        
+        // Build summary line
+        const summaryParts = [];
+        if (counts.bjt > 0)        summaryParts.push(`${counts.bjt} BJT`);
+        if (counts.single_fet > 0) summaryParts.push(`${counts.single_fet} Single FETs/MOSFETs`);
+        if (counts.array_fet > 0)  summaryParts.push(`${counts.array_fet} Array FETs/MOSFETs`);
+        let countHtml = `Found ${total} part${total !== 1 ? 's' : ''} - ${summaryParts.join(', ')}`;
+
+        // Note if any group is capped at 20 (worker slices at 20 per group)
+        const capped = [
+            counts.bjt > 20        ? 'BJT'        : null,
+            counts.single_fet > 20 ? 'FET Single' : null,
+            counts.array_fet > 20  ? 'FET Array'  : null,
+        ].filter(Boolean);
+        if (capped.length > 0) {
+            countHtml += ` <span style="font-size:13px;font-weight:400;color:#55524b;">(Showing top 20 per category)</span>`;
+        }
+        countEl.innerHTML = countHtml;
+
+        container.innerHTML = '';
+
+        // Render each non-empty group with a header + cards grid
+        const groups = [
+    { key: 'bjt',        label: 'BJT Transistors',              parts: data.results.bjt        || [] },
+    { key: 'single_fet', label: 'Single FETs/MOSFETs',        parts: data.results.single_fet || [] },
+    { key: 'array_fet',  label: 'Array FETs/MOSFETs',         parts: data.results.array_fet  || [] },
+];
+
+        groups.forEach(group => {
+            if (group.parts.length === 0) return;
+            
+            const header = document.createElement('div');
+            header.className = 'part-group-header';
+            header.textContent = group.label;
+            container.appendChild(header);
+
+            const grid = document.createElement('div');
+            grid.className = 'part-cards-grid';
+
+            group.parts.forEach(part => {
+                const card = document.createElement('a');
+                card.className = 'part-card';
+                card.href = part.url || '#';
+                card.target = '_blank';
+                card.rel = 'noopener noreferrer';
+
+                const meta = [part.type, part.package].filter(Boolean).join(', ');
+                card.innerHTML = `
+                    <div class="part-card-name">${escapeHtml(part.part)}</div>
+                    <div class="part-card-meta">${escapeHtml(meta) || '&nbsp;'}</div>
+                    <div class="part-card-cta">View part details →</div>
+                `;
+                grid.appendChild(card);
+            });
+
+            container.appendChild(grid);
         });
     }
 
     function resetPartSearch() {
-        document.getElementById('search-area').style.display = 'block';
+        document.getElementById('search-area').style.display = '';
         document.getElementById('part-results-screen').style.display = 'none';
-        document.getElementById('part-number-input').value = '';
+        document.getElementById('part-results-count').innerHTML = '';
+        document.getElementById('part-cards-container').innerHTML = '';
+        document.getElementById('part-error-msg').style.display = 'none';
+        
+        const input = document.getElementById('part-number-input');
+        input.value = '';
+        
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function showError(m) { const e = document.getElementById('error-msg'); e.innerText = m; e.style.display = 'block'; }
+    function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
 </script>
 </body>
 </html>
