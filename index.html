@@ -236,7 +236,7 @@ h1 { font-size: 26px; font-weight: 600; color: #2c2417; margin-bottom: 24px; lin
     display: flex;
     align-items: center;
     gap: 12px;
-    margin: 20px 0;
+    margin: 28px 0 24px 0; /* top gap from search field, bottom gap to selector cards */
 }
 .search-divider-line {
     flex: 1;
@@ -573,38 +573,66 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
     }
 
     function handleTypeChange() {
-        const selectedType = document.getElementById('input-type').value;
-        
-        if (currentFamily === 'bjt') {
-            if (selectedType && typePackageMapping[selectedType]) {
-                populateSelect('input-package', [''].concat(typePackageMapping[selectedType]));
-            } else {
-                populateSelect('input-package', bjtDropdowns.packages);
-            }
-        } else {
-            // FET Logic: Filter packages based on selected Type AND Category
-            const catVal = document.getElementById('input-badge').value;
-            const map = fetDropdowns.type_package_map;
-            if (!map) return;
-            
-            if (!selectedType) {
-                // If type is cleared, reset packages based on category
-                handleCategoryChange();
-                return;
-            }
+    const selectedType = document.getElementById('input-type').value;
 
-            let availablePkgs = new Set();
-            const categoriesToSearch = catVal ? [catVal] : ['single', 'array'];
-            
-            categoriesToSearch.forEach(c => {
-                if (map[c] && map[c][selectedType]) {
-                    map[c][selectedType].forEach(p => availablePkgs.add(p));
-                }
-            });
-            
-            populateSelect('input-package', [''].concat(Array.from(availablePkgs).sort()));
+    if (currentFamily === 'bjt') {
+        if (selectedType && typePackageMapping[selectedType]) {
+            populateSelect('input-package', [''].concat(typePackageMapping[selectedType]));
+        } else {
+            populateSelect('input-package', bjtDropdowns.packages);
         }
+        return;
     }
+
+    // --- FET logic ---
+    const map = fetDropdowns.type_package_map;
+    if (!map) return;
+
+    if (!selectedType) {
+        // Type cleared → restore all category options and re-run category filter
+        populateSelect('input-badge', fetDropdowns.categories || []);
+        handleCategoryChange();
+        return;
+    }
+
+    // Determine which bucket(s) this type belongs to
+    const inSingle = !!(map['single'] && map['single'][selectedType]);
+    const inArray  = !!(map['array']  && map['array'][selectedType]);
+
+    const badgeSelect = document.getElementById('input-badge');
+
+    if (inSingle && !inArray) {
+        // Show only "Any" + "single" in category dropdown, auto-select single
+        const filtered = (fetDropdowns.categories || []).filter(c => {
+            const v = typeof c === 'object' ? c.value : c;
+            return v === '' || v === 'single';
+        });
+        populateSelect('input-badge', filtered);
+        badgeSelect.value = 'single';
+
+    } else if (inArray && !inSingle) {
+        // Show only "Any" + "array" in category dropdown, auto-select array
+        const filtered = (fetDropdowns.categories || []).filter(c => {
+            const v = typeof c === 'object' ? c.value : c;
+            return v === '' || v === 'array';
+        });
+        populateSelect('input-badge', filtered);
+        badgeSelect.value = 'array';
+
+    }
+    // If type exists in both or neither, leave category dropdown as-is
+
+    // Now update packages based on the resolved type + category
+    const catVal = badgeSelect.value;
+    const categoriesToSearch = catVal ? [catVal] : ['single', 'array'];
+    let availablePkgs = new Set();
+    categoriesToSearch.forEach(c => {
+        if (map[c] && map[c][selectedType]) {
+            map[c][selectedType].forEach(p => availablePkgs.add(p));
+        }
+    });
+    populateSelect('input-package', [''].concat(Array.from(availablePkgs).sort()));
+}
 
     // Helper to populate <select> elements smoothly
     function populateSelect(elementId, options) {
@@ -614,7 +642,7 @@ footer a { color: #faf9f6; text-decoration: underline; margin: 0 10px; }
         
         options.forEach(opt => {
             // Skip empty string since we already added "Any"
-            if (opt === '') return; 
+        if (opt === '' || (typeof opt === 'object' && opt !== null && opt.value === '')) return;
             
             const el = document.createElement('option');
             if (typeof opt === 'object' && opt !== null) {
